@@ -1,5 +1,16 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
+        <file>qml/bb.qml</file>
+        <file>qml/Scene.qml</file>
+        <file>qml/level/Level1.qml</file>
+        <file>qml/object/Ball.qml</file>
+        <file>qml/object/Wall.qml</file>
+        <file>qml/level/LevelBase.qml</file>
+        <file>qml/ui/VPanel.qml</file>
+        <file>qml/ui/ActionPanel.qml</file>
+        <file>qml/ui/PlayButton.qml</file>
+        <file>qml/Scale.js</file>
+        <file>qml/Ui.qml</file>
+        <file>qml/sensor/EdgeSensor.qml</file>
     </qresource>
 </RCC>

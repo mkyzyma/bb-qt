@@ -1,14 +1,16 @@
 TEMPLATE = app
 
 QT += qml quick
-CONFIG += c++11
+CONFIG += c++14
 
 SOURCES += main.cpp
 
 RESOURCES += qml.qrc
 
+include(E:/tools/qml-box2d/box2d_lib.pri)
+
 # Additional import path used to resolve QML modules in Qt Creator's code model
-QML_IMPORT_PATH =
+QML_IMPORT_PATH = e:/tools/Qt/5.8/android_armv7/qml/Box2D.2.0
 
 # Additional import path used to resolve QML modules just for Qt Quick Designer
 QML_DESIGNER_IMPORT_PATH =
@@ -28,3 +30,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    android/AndroidManifest.xml \
+    android/gradle/wrapper/gradle-wrapper.jar \
+    android/gradlew \
+    android/res/values/libs.xml \
+    android/build.gradle \
+    android/gradle/wrapper/gradle-wrapper.properties \
+    android/gradlew.bat
+
+ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
