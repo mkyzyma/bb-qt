@@ -5,6 +5,7 @@ import "Scale.js" as Scl
 import "level"
 import "object"
 import "sensor"
+import "global"
 Rectangle {
     id: scene
 
@@ -47,6 +48,12 @@ Rectangle {
         onReadingChanged: ball.tilt(reading.xRotation, reading.yRotation);
     }
 
+    /*Rectangle{
+        id: bottomCut
+        color: StyleColor.outerColor
+        width: scene.width
+        height: scene.height
+    }*/
 
     transform: Scale {
         id: tr
@@ -57,8 +64,9 @@ Rectangle {
         tr.yScale = Scl.scaleFactor;
 
         /*scene.x = screen.width / 2 - (width * Scl.scaleFactor) / 2;
-        scene.y = screen.height / 2 - (height * Scl.scaleFactor) / 2;*/
+        scene.y = screen.height / 2 - (height * Scl.scaleFactor) / 2;
 
+        bottomCut.y = scene.y + height
         /*scene.x = screen.width / 2 - (width ) / 2;
         scene.y = screen.height / 2 - (height ) / 2;*/
 

@@ -3,12 +3,13 @@ import QtQuick.Window 2.2
 import Box2D 2.0
 import "ui"
 import "Scale.js" as Sc
+import "global"
 Window {
     id: win
     visible: true
 
-    width: 900
-    height: 800
+    width: 500
+    height: 900
 
     title: qsTr("B&B")
 
@@ -23,6 +24,8 @@ Window {
         Scene {
             id: scene
             screen: screen
+
+
         }        
 
         Ui{
@@ -31,10 +34,11 @@ Window {
             onBreakReleased: scene.ball.breakEnd()
         }
 
-        Component.onCompleted: {
+        Component.onCompleted: {            
             Sc.config(screen);
             ui.height = win.height / Sc.scaleFactor;
             ui.width = win.width / Sc.scaleFactor;
+
         }
     }
 }
