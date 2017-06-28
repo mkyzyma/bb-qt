@@ -12,5 +12,8 @@
         <file>qml/Scale.js</file>
         <file>qml/Ui.qml</file>
         <file>qml/sensor/EdgeSensor.qml</file>
+        <file>qml/object/Food.qml</file>
+        <file>qml/global/StyleColor.qml</file>
+        <file>qml/global/qmldir</file>
     </qresource>
 </RCC>

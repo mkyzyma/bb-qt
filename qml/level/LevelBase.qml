@@ -1,10 +1,12 @@
 import QtQuick 2.5
 import Box2D 2.0
 import "../object"
-
-Item {
+import "../sensor"
+import "../global"
+Rectangle {
     id: levelBase
 
+    color: StyleColor.floreColor
 
     property int sceneWidth
     property int sceneHeight
@@ -79,6 +81,57 @@ Item {
         }
     }
 
+    transform: Translate {
+        id: levelMove
+        x: levelBase.x
+        y: levelBase.y
+    }
 
+    NumberAnimation {
+        id: moveAnim
+        target: levelMove;
+        duration: 800;
+        easing {type: Easing.OutCubic}
+    }
+
+    EdgeSensor{
+        id: edgeSensor
+
+        width: sceneWidth
+        height: sceneHeight
+
+
+        onBottomEdge: {
+            console.debug("bottom");
+            moveY(sceneHeight)
+        }
+        onTopEdge: {
+            console.debug("top")
+            moveY(-sceneHeight)
+        }
+        onRightEdge: {
+            console.debug("right")
+            moveX(sceneWidth)
+        }
+        onLeftEdge: {
+            console.debug("left")
+            moveX(-sceneWidth)
+        }
+
+    }
+
+    function moveY(shift){
+        moveAnim.property = "y";        
+        moveAnim.to = levelMove.y - shift;
+        moveAnim.running = true;
+        edgeSensor.y = edgeSensor.y + shift;
+    }
+
+    function moveX(shift){
+        moveAnim.property = "x";        
+        moveAnim.to = levelMove.x - shift;
+        moveAnim.running = true;
+        edgeSensor.x = edgeSensor.x + shift;
+    }
 }
 

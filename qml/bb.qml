@@ -7,8 +7,8 @@ Window {
     id: win
     visible: true
 
-    width: 640
-    height: 480
+    width: 900
+    height: 800
 
     title: qsTr("B&B")
 

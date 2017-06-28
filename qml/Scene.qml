@@ -26,40 +26,9 @@ Rectangle {
 
         sceneWidth: scene.width
         sceneHeight: scene.height
-
-        transform: Translate {
-            id: levelMove
-        }
     }
 
-    EdgeSensor{
-        id: edgeSensor
 
-        width: scene.width
-        height: scene.height
-
-        onBottomEdge: {
-            console.debug("bottom")
-            levelMove.y = levelMove.y - scene.height;
-            y = y + scene.height;
-        }
-        onTopEdge: {
-            console.debug("top")
-            levelMove.y = levelMove.y + scene.height;
-            y = y - scene.height;
-        }
-        onRightEdge: {
-            console.debug("right")
-            levelMove.x = levelMove.x - scene.width;
-            x = x + scene.width;
-        }
-        onLeftEdge: {
-            console.debug("left")
-            levelMove.x = levelMove.x + scene.width;
-            x = x - scene.width;
-        }
-
-    }
 
     Body{
         id: sceneAnchor
@@ -87,8 +56,11 @@ Rectangle {
         tr.xScale = Scl.scaleFactor;
         tr.yScale = Scl.scaleFactor;
 
-        scene.x = screen.width / 2 - (width * Scl.scaleFactor) / 2;
-        scene.y = screen.height / 2 - (height * Scl.scaleFactor) / 2;
+        /*scene.x = screen.width / 2 - (width * Scl.scaleFactor) / 2;
+        scene.y = screen.height / 2 - (height * Scl.scaleFactor) / 2;*/
+
+        /*scene.x = screen.width / 2 - (width ) / 2;
+        scene.y = screen.height / 2 - (height ) / 2;*/
 
     }
 }

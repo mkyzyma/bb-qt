@@ -1,9 +1,9 @@
 import QtQuick 2.5
-
 import Box2D 2.0
+import "../global"
 Rectangle{
     id: rect
-    color: "#009688"
+    color: StyleColor.wallColor
     radius: 3
     property Body body: wallBody
 

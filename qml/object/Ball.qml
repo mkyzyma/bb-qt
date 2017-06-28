@@ -1,10 +1,11 @@
 import QtQuick 2.5
 import Box2D 2.0
+import "../global"
 
 Rectangle {
     id: ball
     radius: 24
-    color: "#ff9800"
+    color: StyleColor.ballColor
 
     property alias body: ballBody
 
@@ -21,7 +22,6 @@ Rectangle {
 
     width: radius * 2
     height: width
-
 
     Body{
         id: ballBody

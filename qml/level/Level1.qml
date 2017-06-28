@@ -11,7 +11,6 @@ LevelBase{
         height: 20
         x: parent.x
         y: parent.y + sceneHeight - height / 2
-
         width: sceneWidth - 100
     }
 
@@ -26,7 +25,6 @@ LevelBase{
         height: 10
         x: parent.x + 100
         y: parent.y + sceneHeight + sceneHeight / 2
-
         width: sceneWidth - 100
     }
 
@@ -43,6 +41,12 @@ LevelBase{
         y: parent.y + sceneHeight + sceneHeight / 3 - 30
         height: sceneHeight / 2
     }
+
+    Food{
+        x: 50
+        y: 50
+    }
+
 
 
     Component.onCompleted: {

@@ -10,7 +10,7 @@ RESOURCES += qml.qrc
 include(E:/tools/qml-box2d/box2d_lib.pri)
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
-QML_IMPORT_PATH = e:/tools/Qt/5.8/android_armv7/qml/Box2D.2.0
+QML_IMPORT_PATH = e:/tools/Qt/5.9/android_armv7/qml/Box2D.2.0
 
 # Additional import path used to resolve QML modules just for Qt Quick Designer
 QML_DESIGNER_IMPORT_PATH =
@@ -38,6 +38,7 @@ DISTFILES += \
     android/res/values/libs.xml \
     android/build.gradle \
     android/gradle/wrapper/gradle-wrapper.properties \
-    android/gradlew.bat
+    android/gradlew.bat \
+    qml/global/qmldir
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android
