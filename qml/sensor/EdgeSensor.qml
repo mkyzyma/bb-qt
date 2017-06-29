@@ -17,7 +17,9 @@ Item {
             width: edge.width
             height: 1
             sensor: true
-            onEndContact: bottomEdge();
+            onEndContact: {
+                if(other.isBall) bottomEdge();
+            }
         }
     }
 
@@ -30,7 +32,9 @@ Item {
             width: edge.width
             height: 1
             sensor: true
-            onEndContact: topEdge();
+            onEndContact: {
+                if(other.isBall) topEdge();
+            }
         }
     }
 
@@ -43,7 +47,9 @@ Item {
             height: edge.height
             width: 1
             sensor: true
-            onEndContact: leftEdge();
+            onEndContact: {
+                if(!other.isBall) leftEdge();
+            }
         }
     }
 
@@ -56,7 +62,9 @@ Item {
             height: edge.height
             width: 1
             sensor: true
-            onEndContact: rightEdge();
+            onEndContact: {
+                if(!other.isBall) rightEdge();
+            }
         }
     }
     /*RayCast {

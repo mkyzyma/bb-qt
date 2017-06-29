@@ -26,6 +26,7 @@ Rectangle {
         y: 100
     }
 
+
     MouseArea {
         anchors.fill: parent
         onClicked: ball.kick(mouseX, mouseY)

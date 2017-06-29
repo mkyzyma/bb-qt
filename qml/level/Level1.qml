@@ -43,11 +43,10 @@ LevelBase{
     }
 
     Food{
-        x: 50
-        y: 50
+        id: food1
+        x: 200
+        y: 200
     }
-
-
 
     Component.onCompleted: {
         ball.x = 100

@@ -6,7 +6,6 @@ Rectangle {
     id: ball
     radius: 24
     color: StyleColor.ballColor
-
     property alias body: ballBody
 
     property int kickForce: 5

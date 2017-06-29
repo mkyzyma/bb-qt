@@ -8,9 +8,8 @@ Window {
     id: win
     visible: true
 
-    width: 500
-    height: 900
-
+    width: 900
+    height: 480
     title: qsTr("B&B")
 
     Rectangle {
@@ -23,9 +22,7 @@ Window {
 
         Scene {
             id: scene
-            screen: screen
-
-
+            screen: screen            
         }        
 
         Ui{
