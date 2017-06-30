@@ -53,13 +53,48 @@ LevelBase{
     }
 
     Food{
-        x: 100
+        x: 500
         y: 230
     }
 
     Food{
         x: 80
         y: 60
+    }
+
+    Food{
+        x: 700
+        y: 330
+    }
+
+    Food{
+        x: 700
+        y: 600
+    }
+
+    Food{
+        x: 400
+        y: 500
+    }
+
+    Food{
+        x: 480
+        y: 590
+    }
+
+    Food{
+        x: 700
+        y: 900
+    }
+
+    Food{
+        x: 200
+        y: 600
+    }
+
+    Food{
+        x: 250
+        y: 800
     }
 
     Component.onCompleted: {

@@ -11,6 +11,35 @@ Rectangle {
 
     property int score: 1
 
+
+    Body{
+        id: foodBody
+        target: food
+
+        bodyType: Body.Dynamic
+
+        Circle {
+            id: foodShape
+            radius: food.radius
+
+            density: 0
+            friction: 0
+            restitution: 0
+
+            onBeginContact: {
+                if(other.isBall) {
+                    foodBody.active = false
+                    foodShape.radius = 0
+                    eatAnim.running = true
+
+                    scoreShow.running = true
+                    scoreText.color = "darkorange"
+                }
+            }
+        }
+
+    }
+
     Text{
         id: scoreText
         text: "+" + score
@@ -69,40 +98,6 @@ Rectangle {
             property: "opacity"
             to: 0
         }
-        /*NumberAnimation {
-            target: scoreText
-            duration: 600
-            easing {type: Easing.InCubic}
-            property: "font.pointSize"
-            to: 12
-        }*/
-    }
-    Body{
-        id: foodBody
-        target: food
-
-        bodyType: Body.Dynamic
-
-        Circle {
-            id: foodShape
-            radius: food.radius
-
-            density: 0
-            friction: 0
-            restitution: 0
-
-            onBeginContact: {
-                if(other.isBall) {
-                    foodBody.active = false
-                    foodShape.radius = 0
-                    eatAnim.running = true
-
-                    scoreShow.running = true
-                    scoreText.color = "darkorange"
-                }
-            }
-        }
-
     }
 
     FrictionJoint {
@@ -115,10 +110,4 @@ Rectangle {
         maxTorque: 0
     }
 
-    Component.onCompleted: {
-        /*if (footBody) {
-            x = foodBody.x
-            y = foodBody.y
-        }*/
-    }
 }
