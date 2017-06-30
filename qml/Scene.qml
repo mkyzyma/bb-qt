@@ -29,8 +29,6 @@ Rectangle {
         sceneHeight: scene.height
     }
 
-
-
     Body{
         id: sceneAnchor
 

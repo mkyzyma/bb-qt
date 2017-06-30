@@ -43,9 +43,23 @@ LevelBase{
     }
 
     Food{
-        id: food1
         x: 200
         y: 200
+    }
+
+    Food{
+        x: 200
+        y: 250
+    }
+
+    Food{
+        x: 100
+        y: 230
+    }
+
+    Food{
+        x: 80
+        y: 60
     }
 
     Component.onCompleted: {
