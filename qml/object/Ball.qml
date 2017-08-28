@@ -8,16 +8,18 @@ Rectangle {
     color: StyleColor.ballColor
     property alias body: ballBody
 
-    property int kickForce: 5
-    property int tiltForce: 1
-    property int score: 0
-    property int breakForce: 1000
+    property int kickForce: 5 // Сила удара
+    property int tiltForce: 1 // Сила качения
+    property int score: 0 // Очки
+    property int breakForce: 1000 // Сила торможения
 
     property FrictionJoint fJoint
 
     property alias density: ballShape.density
     property alias friction: ballShape.friction
     property alias restitution: ballShape.restitution
+
+    signal eat(int score)
 
     width: radius * 2
     height: width
@@ -34,12 +36,33 @@ Rectangle {
 
             density: 10
             friction: 0
-            restitution: 0.25
+            restitution: 0.25            
+
+            onBeginContact: {
+                if(other.isFood){
+                    var food = other;
+                    food.eat();
+                    ball.eat(food.score)
+
+                }
+            }
+        }
+
+        Circle {
+            id: centerPoint
+            radius: 1
+
+            density: 0
+            friction: 0
+            restitution: 0
 
             property bool isBall: true
         }
 
     }
+
+
+
 
     function push(x, y, f){
         var p = Qt.point(x*f, y*f)

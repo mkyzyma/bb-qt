@@ -9,7 +9,7 @@ Rectangle {
     width: radius * 2
     height: width
 
-    property int score: 1
+    property int score: 150
 
 
     Body{
@@ -26,29 +26,17 @@ Rectangle {
             friction: 0
             restitution: 0
 
-            onBeginContact: {
-                if(other.isBall) {
-                    foodBody.active = false
-                    foodShape.radius = 0
-                    eatAnim.running = true
+            property bool isFood: true
+            property int score: food.score
 
-                    scoreShow.running = true
-                    scoreText.color = "darkorange"
-                }
+            function eat() {
+                foodBody.active = false
+                foodShape.radius = 0
+                eatAnim.running = true
             }
         }
 
     }
-
-    Text{
-        id: scoreText
-        text: "+" + score
-        color: "green"
-        font.bold: true
-        font.family: "Comic"
-        opacity: 0
-    }
-
 
 
     NumberAnimation {
@@ -60,45 +48,7 @@ Rectangle {
         to: 0
     }
 
-    ParallelAnimation{
-        id: scoreShow
-        NumberAnimation {
-            target: scoreText
-            duration: 600
-            easing {type: Easing.OutCubic}
-            property: "y"
-            to: -50
-        }
-        NumberAnimation {
-            target: scoreText
-            duration: 600
-            easing {type: Easing.OutCubic}
-            property: "opacity"
-            to: 1
 
-        }
-
-        NumberAnimation {
-            target: scoreText
-            duration: 600
-            easing {type: Easing.InCubic}
-            property: "font.pointSize"
-            to: 48
-        }
-        onStopped: {
-            scoreFade.running = true
-        }
-    }
-    ParallelAnimation{
-        id: scoreFade
-        NumberAnimation {
-            target: scoreText
-            duration: 400
-            easing {type: Easing.OutCubic}
-            property: "opacity"
-            to: 0
-        }
-    }
 
     FrictionJoint {
         id: foodAirFriction

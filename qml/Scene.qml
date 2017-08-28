@@ -47,20 +47,22 @@ Rectangle {
     }
 
 
+
+
     transform: Scale {
         id: tr
     }
+
+
 
     Component.onCompleted: {
         tr.xScale = Scl.scaleFactor;
         tr.yScale = Scl.scaleFactor;
 
-        /*scene.x = screen.width / 2 - (width * Scl.scaleFactor) / 2;*/
         scene.y = screen.height / 2 - (scene.height * Scl.scaleFactor) / 2
 
 
-        /*scene.x = screen.width / 2 - (width ) / 2;
-        scene.y = screen.height / 2 - (height ) / 2;*/
-
     }
+
+
 }

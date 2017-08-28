@@ -24,6 +24,10 @@ Rectangle {
         fJoint: ballAirFriction
         x: scene.width / 2 - width / 2
         y: 100
+
+        onEat: {
+            addScore(score)
+        }
     }
 
 
@@ -119,6 +123,60 @@ Rectangle {
             moveX(-sceneWidth)
         }
 
+    }
+
+    Text{
+        id: scoreText
+
+        color: "green"
+        font.bold: true
+        font.family: "Arial"
+    }
+
+    ParallelAnimation{
+        id: scoreShow
+
+        NumberAnimation {
+            target: scoreText
+            duration: 600
+            easing {type: Easing.InCubic}
+            property: "opacity"
+            from: 0
+            to: 1
+
+        }
+
+        NumberAnimation {
+            target: scoreText
+            duration: 600
+            easing {type: Easing.InCubic}
+            property: "font.pointSize"
+            from: 12
+            to: 48
+        }
+        onStopped: {
+            scoreFade.running = true
+        }
+    }
+
+    ParallelAnimation{
+        id: scoreFade
+        NumberAnimation {
+            target: scoreText
+            duration: 400
+            easing {type: Easing.OutCubic}
+            property: "opacity"
+            to: 0
+        }
+    }
+
+    function addScore(score){
+        scoreText.opacity = 0
+        scoreShow.running = true
+        scoreText.text = "+" + score
+        scoreText.color = "darkorange"
+        scoreText.x = ball.x
+        scoreText.y = ball.y
     }
 
     function moveY(shift){
