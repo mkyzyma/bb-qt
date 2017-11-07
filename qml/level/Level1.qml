@@ -47,6 +47,14 @@ LevelBase{
         y: 200
     }
 
+    Enemy{
+        id: enemy1
+        x: 200
+        y: 300
+
+
+    }
+
     Food{
         x: 200
         y: 250
@@ -100,6 +108,8 @@ LevelBase{
     Component.onCompleted: {
         ball.x = 100
         ball.y = level.height / 3 - ball.height / 2
+
+        enemy1.setBall(ball)
     }
 }
 

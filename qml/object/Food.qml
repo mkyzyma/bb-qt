@@ -16,7 +16,7 @@ Rectangle {
         id: foodBody
         target: food
 
-        bodyType: Body.Dynamic
+        bodyType: Body.Static
 
         Circle {
             id: foodShape
@@ -25,7 +25,7 @@ Rectangle {
             density: 0
             friction: 0
             restitution: 0
-
+            sensor: true
             property bool isFood: true
             property int score: food.score
 

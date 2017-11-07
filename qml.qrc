@@ -15,5 +15,6 @@
         <file>qml/object/Food.qml</file>
         <file>qml/global/StyleColor.qml</file>
         <file>qml/global/qmldir</file>
+        <file>qml/object/Enemy.qml</file>
     </qresource>
 </RCC>

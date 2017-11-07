@@ -20,6 +20,7 @@ Rectangle {
     property alias restitution: ballShape.restitution
 
     signal eat(int score)
+    signal move()
 
     width: radius * 2
     height: width
@@ -57,6 +58,10 @@ Rectangle {
             restitution: 0
 
             property bool isBall: true
+        }
+
+        onPositionChanged: {
+            move()
         }
 
     }

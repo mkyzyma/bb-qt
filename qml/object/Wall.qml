@@ -2,7 +2,7 @@ import QtQuick 2.5
 import Box2D 2.0
 import "../global"
 Rectangle{
-    id: rect
+    id: wall
     color: StyleColor.wallColor
     radius: 3
     property Body body: wallBody
@@ -10,14 +10,14 @@ Rectangle{
     Body{
         id: wallBody
 
-        target: rect
+        target: wall
 
 
         Box{
-            id: box
+            id: wallShape
 
-            width: rect.width
-            height: rect.height
+            width: wall.width
+            height: wall.height
 
             density: 5
             friction: 10
