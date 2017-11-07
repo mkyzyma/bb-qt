@@ -6,7 +6,7 @@ Rectangle{
     id: enemy
     width: 24
     height: width
-
+    radius: 3
     color: "red"
 
     property alias body: enemyBody
@@ -28,7 +28,7 @@ Rectangle{
 
             density: 0
             friction: 0
-            restitution: 0
+            restitution: 0.3
 
             property bool isEnemy: true
 
@@ -51,14 +51,18 @@ Rectangle{
         var b = ball.body.getWorldCenter();
         var e = enemy.body.getWorldCenter();
 
-        var p = Qt.point(b.x - e.x, b.y - e.y);
+        var ix = b.x - e.x;
+        var iy = b.y - e.y;
 
-        p.x = p.x / 10;
-        p.y = p.y / 10;
+        var p = Qt.point(ix, iy);
+        var l = Math.sqrt(p.x*p.x + p.y*p.y)
 
-        //enemyBody.applyLinearImpulse(p, e);
+        p.x = p.x / (l*3);
+        p.y = p.y / (l*3);
 
-        enemyBody.applyForceToCenter(p);
+        enemyBody.applyLinearImpulse(p, e);
+
+        //enemyBody.applyForceToCenter(p);
     }
 
     function setBall(_ball) {
