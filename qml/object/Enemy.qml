@@ -4,7 +4,7 @@ import ".."
 import "../level"
 Rectangle{
     id: enemy
-    width: 24
+    width: 20
     height: width
     radius: 3
     color: "red"
