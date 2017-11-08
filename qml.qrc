@@ -16,5 +16,7 @@
         <file>qml/global/StyleColor.qml</file>
         <file>qml/global/qmldir</file>
         <file>qml/object/Enemy.qml</file>
+        <file>qml/ui/HPanel.qml</file>
+        <file>qml/ui/StatePanel.qml</file>
     </qresource>
 </RCC>

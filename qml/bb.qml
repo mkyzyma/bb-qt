@@ -8,8 +8,8 @@ Window {
     id: win
     visible: true
 
-    width: 900
-    height: 480
+    width: 800
+    height: 600
     title: qsTr("B&B")
 
     Rectangle {
@@ -22,20 +22,21 @@ Window {
 
         Scene {
             id: scene
-            screen: screen            
+            screen: screen
         }        
 
         Ui{
             id: ui;
             onBreakPressed: scene.ball.breakStart()
             onBreakReleased: scene.ball.breakEnd()
+            ball: scene.ball
         }
 
         Component.onCompleted: {            
             Sc.config(screen);
             ui.height = win.height / Sc.scaleFactor;
             ui.width = win.width / Sc.scaleFactor;
-
+            ui.ball = scene.ball
         }
     }
 }

@@ -26,7 +26,7 @@ Rectangle {
             friction: 0
             restitution: 0
             sensor: true
-            property bool isFood: true
+            property bool isFood: true            
             property int score: food.score
 
             function eat() {

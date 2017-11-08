@@ -43,11 +43,11 @@ Rectangle {
                 if(other.isFood){
                     var food = other;
                     food.eat();
-                    ball.eat(food.score)
-
+                    ball.eat(food.score);
+                    ball.score += food.score;
                 }
                 if (other.isEnemy) {
-                    damage(10)
+                    damage(10);
                 }
 
             }

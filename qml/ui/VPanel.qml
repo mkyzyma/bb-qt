@@ -1,5 +1,4 @@
-import QtQuick 2.0
-import "../Scale.js" as Scl
+import QtQuick 2.5
 
 Column {
     id: panel
