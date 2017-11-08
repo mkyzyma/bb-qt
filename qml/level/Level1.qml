@@ -107,10 +107,17 @@ LevelBase{
 
     }
     Enemy{
+        id: enemy3
+        x: 600
+        y: 100
+        force: 1.5
+
+    }
+    Enemy{
         id: enemy2
         x: 200
         y: 500
-
+        force: 2
 
     }
 
@@ -120,6 +127,7 @@ LevelBase{
 
         enemy1.setBall(ball)
         enemy2.setBall(ball)
+        enemy3.setBall(ball)
     }
 }
 

@@ -46,6 +46,10 @@ Rectangle {
                     ball.eat(food.score)
 
                 }
+                if (other.isEnemy) {
+                    damage(10)
+                }
+
             }
         }
 
@@ -67,6 +71,12 @@ Rectangle {
     }
 
 
+    ColorAnimation on color {
+        id: damageAnim
+        from: "red"
+        to: StyleColor.ballColor
+        duration: 200
+    }
 
 
     function push(x, y, f){
@@ -95,5 +105,9 @@ Rectangle {
     function breakEnd(){
         ballBody.fixedRotation = false
         fJoint.maxForce = 0
+    }
+
+    function damage(power) {
+        damageAnim.start()
     }
 }

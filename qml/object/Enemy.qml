@@ -1,19 +1,21 @@
 import QtQuick 2.5
 import Box2D 2.0
 import ".."
-import "../level"
+import "../global"
 Rectangle{
     id: enemy
     width: 20
     height: width
     radius: 3
-    color: "red"
+    color: StyleColor.enemyColor
 
     property alias body: enemyBody
 
     property alias density: enemyShape.density
     property alias friction: enemyShape.friction
     property alias restitution: enemyShape.restitution
+    property real force: 1
+
     property Ball ball: levelBase.ball
     Body {
         id: enemyBody
@@ -57,8 +59,8 @@ Rectangle{
         var p = Qt.point(ix, iy);
         var l = Math.sqrt(p.x*p.x + p.y*p.y)
 
-        p.x = p.x / (l*3);
-        p.y = p.y / (l*3);
+        p.x = (p.x / (l*5)) * force;
+        p.y = (p.y / (l*5)) * force;
 
         enemyBody.applyLinearImpulse(p, e);
 
