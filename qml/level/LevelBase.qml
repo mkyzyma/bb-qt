@@ -26,7 +26,15 @@ Rectangle {
         y: 100
 
         onEat: {
-            addScore(score)
+            showScore(score);
+        }
+
+        onDamage: {
+            showDamage(power);
+        }
+
+        onDie: {
+            levelBase.die();
         }
     }
 
@@ -126,7 +134,7 @@ Rectangle {
     }
 
     Text{
-        id: scoreText
+        id: msgText
 
         color: "green"
         font.bold: true
@@ -134,35 +142,35 @@ Rectangle {
     }
 
     ParallelAnimation{
-        id: scoreShow
+        id: msgShow
 
         NumberAnimation {
-            target: scoreText
-            duration: 600
+            target: msgText
+            duration: 200
             easing {type: Easing.InCubic}
             property: "opacity"
-            from: 0
+            from: 0.5
             to: 1
 
         }
 
         NumberAnimation {
-            target: scoreText
-            duration: 600
+            target: msgText
+            duration: 200
             easing {type: Easing.InCubic}
             property: "font.pointSize"
-            from: 12
+            from: 24
             to: 48
         }
         onStopped: {
-            scoreFade.running = true
+            msgFade.running = true
         }
     }
 
     ParallelAnimation{
-        id: scoreFade
+        id: msgFade
         NumberAnimation {
-            target: scoreText
+            target: msgText
             duration: 400
             easing {type: Easing.OutCubic}
             property: "opacity"
@@ -170,13 +178,25 @@ Rectangle {
         }
     }
 
-    function addScore(score){
-        scoreText.opacity = 0
-        scoreShow.running = true
-        scoreText.text = "+" + score
-        scoreText.color = "darkorange"
-        scoreText.x = ball.x
-        scoreText.y = ball.y
+    function showScore(score){
+        showMessage("+" + score, StyleColor.foodColor);
+    }
+
+    function showDamage(power){
+        showMessage("-" + power, StyleColor.enemyColor);
+    }
+
+    function die() {
+        showMessage("RIP", "red");
+    }
+
+    function showMessage(text, color) {
+        msgText.opacity = 0
+        msgShow.running = true
+        msgText.text = text
+        msgText.color = color
+        msgText.x = ball.x
+        msgText.y = ball.y
     }
 
     function moveY(shift){

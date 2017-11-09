@@ -62,11 +62,13 @@ Item{
         font.bold: true
     }
 
-    function setScore() {
+    function setState() {
         scoreValue.text = ball.score.toString();
+        healthValue.text = ball.health.toString();
     }
 
     onBallChanged: {
-        ball.onScoreChanged.connect(setScore);
+        ball.onScoreChanged.connect(setState);
+        ball.onHealthChanged.connect(setState);
     }
 }

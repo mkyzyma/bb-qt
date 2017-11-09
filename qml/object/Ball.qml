@@ -12,6 +12,8 @@ Rectangle {
     property int tiltForce: 1 // Сила качения
     property int score: 0 // Очки
     property int breakForce: 1000 // Сила торможения
+    property int health: 100 // Здоровье
+    property bool rip: false // Умер
 
     property FrictionJoint fJoint
 
@@ -20,6 +22,8 @@ Rectangle {
     property alias restitution: ballShape.restitution
 
     signal eat(int score)
+    signal damage(int power)
+    signal die()
     signal move()
 
     width: radius * 2
@@ -32,12 +36,12 @@ Rectangle {
         bodyType: Body.Dynamic
 
         Circle {
-            id: ballShape            
+            id: ballShape
             radius: ball.radius
 
             density: 10
             friction: 0
-            restitution: 0.25            
+            restitution: 0.25
 
             onBeginContact: {
                 if(other.isFood){
@@ -47,7 +51,7 @@ Rectangle {
                     ball.score += food.score;
                 }
                 if (other.isEnemy) {
-                    damage(10);
+                    doDamage(other.damage);
                 }
 
             }
@@ -73,15 +77,17 @@ Rectangle {
 
     ColorAnimation on color {
         id: damageAnim
-        from: "red"
+        from: StyleColor.enemyColor
         to: StyleColor.ballColor
         duration: 200
     }
 
 
     function push(x, y, f){
-        var p = Qt.point(x*f, y*f)
-        ballBody.applyLinearImpulse(p, ballBody.getWorldCenter());
+        if (!rip){
+            var p = Qt.point(x*f, y*f);
+            ballBody.applyLinearImpulse(p, ballBody.getWorldCenter());
+        }
     }
 
     function tilt(xRot, yRot){
@@ -94,20 +100,42 @@ Rectangle {
         var ix = x - ballCenter.x;
         var iy = y - ballCenter.y;
 
-        push(ix, iy, kickForce)
+        push(ix, iy, kickForce);
     }
 
     function breakStart(){
-        ballBody.fixedRotation = true
-        fJoint.maxForce = breakForce
+        ballBody.fixedRotation = true;
+        fJoint.maxForce = breakForce;
     }
 
     function breakEnd(){
-        ballBody.fixedRotation = false
-        fJoint.maxForce = 0
+        ballBody.fixedRotation = false;
+        fJoint.maxForce = 0;
     }
 
-    function damage(power) {
-        damageAnim.start()
+    function doDamage(power) {
+
+        if (health > 0)
+        {
+            damage(power);
+
+            ball.health -= power;
+
+            if(ball.health <= 0)
+            {
+                doDie();
+            }
+            else
+            {
+                damageAnim.start();
+            }
+        }
+    }
+
+    function doDie () {
+        die();
+        ball.rip = true;
+
+        ball.color = StyleColor.enemyColor;
     }
 }

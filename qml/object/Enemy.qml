@@ -14,7 +14,9 @@ Rectangle{
     property alias density: enemyShape.density
     property alias friction: enemyShape.friction
     property alias restitution: enemyShape.restitution
-    property real force: 1
+
+    property real force: 1 //Сила притяжения
+    property int damage: 5 //Сила удара
 
     property Ball ball: levelBase.ball
     Body {
@@ -30,10 +32,10 @@ Rectangle{
 
             density: 0
             friction: 0
-            restitution: 0.3
+            restitution: 0.5
 
             property bool isEnemy: true
-
+            property alias damage: enemy.damage
 
         }
 
