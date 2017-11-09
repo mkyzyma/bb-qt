@@ -46,14 +46,9 @@ Rectangle {
         onReadingChanged: ball.tilt(reading.xRotation, reading.yRotation);
     }
 
-
-
-
     transform: Scale {
         id: tr
     }
-
-
 
     Component.onCompleted: {
         tr.xScale = Scl.scaleFactor;

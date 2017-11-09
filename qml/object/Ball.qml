@@ -9,7 +9,7 @@ Rectangle {
     property alias body: ballBody
 
     property int kickForce: 5 // Сила удара
-    property int tiltForce: 1 // Сила качения
+    property real tiltForce: 1.3 // Сила качения
     property int score: 0 // Очки
     property int breakForce: 1000 // Сила торможения
     property int health: 100 // Здоровье
