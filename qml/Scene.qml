@@ -42,22 +42,13 @@ Rectangle {
     TiltSensor{
         id: tilt
         active: true
-        Component.onCompleted: calibrate()
+        Component.onCompleted: {
+            console.debug("CALIBRATE");
+            calibrate();
+        }
         onReadingChanged: ball.tilt(reading.xRotation, reading.yRotation);
     }
 
-    transform: Scale {
-        id: tr
-    }
-
-    Component.onCompleted: {
-        tr.xScale = Scl.scaleFactor;
-        tr.yScale = Scl.scaleFactor;
-
-        scene.y = screen.height / 2 - (scene.height * Scl.scaleFactor) / 2
-
-
-    }
 
 
 }

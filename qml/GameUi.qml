@@ -25,14 +25,7 @@ Item {
         onBreakReleased: ui.breakReleased()
     }
 
-    transform: Scale{
-        id: scale
-    }
-
     Component.onCompleted: {
-        scale.xScale = Sc.scaleFactor;
-        scale.yScale = Sc.scaleFactor;
-
-        statePanel.ball = ball;
+        statePanel.ball = ball
     }
 }
