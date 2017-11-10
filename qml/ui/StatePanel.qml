@@ -55,17 +55,6 @@ Item{
         color: StyleColor.ballColor
     }
 
-    /*Text {
-        id: healthCaption
-        anchors.verticalCenter: rect.verticalCenter
-        anchors.left: scoreValue.left
-        anchors.leftMargin: 50
-        text: "+"
-        font.pixelSize: 25
-        color: "brown"
-        font.bold: true
-        opacity: 0.6
-    }*/
     Text {
         id: healthValue
         anchors.verticalCenter: panel.verticalCenter

@@ -110,8 +110,8 @@ Rectangle {
     EdgeSensor{
         id: edgeSensor
 
-        width: sceneWidth
-        height: sceneHeight
+        width: sceneWidth - 1
+        height: sceneHeight - 1
 
 
         onBottomEdge: {
@@ -160,7 +160,7 @@ Rectangle {
             easing {type: Easing.InCubic}
             property: "font.pointSize"
             from: 24
-            to: 48
+            to: 56
         }
         onStopped: {
             msgFade.running = true
@@ -187,7 +187,7 @@ Rectangle {
     }
 
     function die() {
-        showMessage("RIP", "red");
+        showMessage("RIP", StyleColor.enemyColor);
     }
 
     function showMessage(text, color) {

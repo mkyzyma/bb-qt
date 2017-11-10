@@ -19,7 +19,7 @@ Rectangle {
         id: bbWorld
         gravity.y: 0
         gravity.x: 0
-        pixelsPerMeter: 10       
+        pixelsPerMeter: 10
     }
 
     Level1{

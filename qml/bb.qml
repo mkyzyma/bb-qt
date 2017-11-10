@@ -25,7 +25,7 @@ Window {
             screen: screen
         }        
 
-        Ui{
+        GameUi{
             id: ui;
             onBreakPressed: scene.ball.breakStart()
             onBreakReleased: scene.ball.breakEnd()

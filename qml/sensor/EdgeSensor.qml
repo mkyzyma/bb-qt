@@ -19,7 +19,7 @@ Item {
             sensor: true
             onEndContact: {
                 if(other.isBall) bottomEdge();
-            }
+            }            
         }
     }
 

@@ -53,7 +53,6 @@ Rectangle {
                 if (other.isEnemy) {
                     doDamage(other.damage);
                 }
-
             }
         }
 
