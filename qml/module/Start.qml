@@ -12,9 +12,9 @@ Rectangle{
         anchors.centerIn: startPanel
         id: startButton
         color: "WhiteSmoke"
-        radius: 10
-        width: 100
-        height: width
+        radius: 20
+        width: 150
+        height: 200
 
         Text {
             font.bold: true
