@@ -18,5 +18,7 @@
         <file>qml/object/Enemy.qml</file>
         <file>qml/ui/HPanel.qml</file>
         <file>qml/ui/StatePanel.qml</file>
+        <file>qml/module/Game.qml</file>
+        <file>qml/module/Start.qml</file>
     </qresource>
 </RCC>

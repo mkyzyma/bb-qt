@@ -44,7 +44,7 @@ Rectangle {
         active: true
         Component.onCompleted: {
             console.debug("CALIBRATE");
-            calibrate();
+            tilt.calibrate();
         }
         onReadingChanged: ball.tilt(reading.xRotation, reading.yRotation);
     }
