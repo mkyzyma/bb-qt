@@ -1,9 +1,11 @@
-import QtQuick 2.5
+import QtQuick 2.9
+import QtSensors 5.9
 
 import "../Scale.js" as Sc
 import ".."
 
 Item {
+    property TiltSensor tilt
     Scene {
         id: scene
         screen: screen
@@ -41,6 +43,12 @@ Item {
         startAnim.start();
 
         ui.ball = scene.ball;
+
+        tilt.onReadingChanged.connect(onTilt);
+    }
+
+    function onTilt() {
+        scene.ball.tilt(tilt.reading.xRotation, tilt.reading.yRotation)
     }
 
 }

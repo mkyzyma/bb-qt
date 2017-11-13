@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.9
 import "ui"
 import "Scale.js" as Sc
 import "object"

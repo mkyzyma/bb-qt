@@ -1,11 +1,11 @@
-import QtQuick 2.5
+import QtQuick 2.9
 
 
-    Row {
-        id: row
-        anchors.centerIn: parent
+Row {
+    id: row
+    anchors.centerIn: parent
 
-        spacing: 20
+    spacing: 20
 
-    }
+}
 

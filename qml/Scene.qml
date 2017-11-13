@@ -1,6 +1,6 @@
-import QtQuick 2.6
+import QtQuick 2.9
 import Box2D 2.0
-import QtSensors 5.3
+import QtSensors 5.9
 import "Scale.js" as Scl
 import "level"
 import "object"
@@ -13,7 +13,7 @@ Rectangle {
     height: Scl.defHeight
 
     property Ball ball: level.ball
-    property Rectangle screen
+    property Rectangle screen   
 
     World {
         id: bbWorld
@@ -37,18 +37,5 @@ Rectangle {
             width: scene.width
             height: scene.height
         }
-    }    
-
-    TiltSensor{
-        id: tilt
-        active: true
-        Component.onCompleted: {
-            console.debug("CALIBRATE");
-            tilt.calibrate();
-        }
-        onReadingChanged: ball.tilt(reading.xRotation, reading.yRotation);
     }
-
-
-
 }
