@@ -4,10 +4,10 @@ import "../object"
 LevelBase {
     id: level
 
-    width: sceneWidth * 2
+    width: sceneWidth
     height: sceneHeight * 2
 
-    /*Wall {
+    Wall {
         height: 20
         x: parent.x
         y: parent.y + sceneHeight - height / 2
@@ -115,7 +115,7 @@ LevelBase {
         x: 200
         y: 500
         force: 2
-    }*/
+    }
 
     Component.onCompleted: {
         ball.x = 100
