@@ -19,6 +19,7 @@ Rectangle{
     property int damage: 5 //Сила удара
 
     property Ball ball: levelBase.ball
+
     Body {
         id: enemyBody
         target: enemy
@@ -65,8 +66,6 @@ Rectangle{
         p.y = (p.y / (l*5)) * force;
 
         enemyBody.applyLinearImpulse(p, e);
-
-        //enemyBody.applyForceToCenter(p);
     }
 
     function setBall(_ball) {

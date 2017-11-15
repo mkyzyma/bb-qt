@@ -35,9 +35,7 @@ Rectangle {
                 eatAnim.running = true
             }
         }
-
     }
-
 
     NumberAnimation {
         id: eatAnim
@@ -48,8 +46,6 @@ Rectangle {
         to: 0
     }
 
-
-
     FrictionJoint {
         id: foodAirFriction
 
@@ -59,5 +55,4 @@ Rectangle {
         maxForce: 0
         maxTorque: 0
     }
-
 }

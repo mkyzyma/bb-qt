@@ -18,26 +18,17 @@ Rectangle {
 
     property Ball ball: ball
 
-    Ball{
+    Ball {
         id: ball
         radius: 10
         fJoint: ballAirFriction
         x: scene.width / 2 - width / 2
         y: 100
 
-        onEat: {
-            showScore(score);
-        }
-
-        onDamage: {
-            showDamage(power);
-        }
-
-        onDie: {
-            levelBase.die();
-        }
+        onEat: showScore(score);
+        onDamage: showDamage(power);
+        onDie: levelBase.die();
     }
-
 
     MouseArea {
         anchors.fill: parent
@@ -54,40 +45,40 @@ Rectangle {
         maxTorque: 0
     }
 
-    Wall{
+    Wall {
         id: bottom
         height: 10
-        anchors{
+        anchors {
             bottom: levelBase.bottom
             left: levelBase.left
             right: levelBase.right
         }
     }
 
-    Wall{
+    Wall {
         id: top
         height: 10
-        anchors{
+        anchors {
             top: levelBase.top
             left: levelBase.left
             right: levelBase.right
         }
     }
 
-    Wall{
+    Wall {
         id: left
         width: 10
-        anchors{
+        anchors {
             top: levelBase.top
             left: levelBase.left
             bottom: levelBase.bottom
         }
     }
 
-    Wall{
+    Wall {
         id: right
         width: 10
-        anchors{
+        anchors {
             top: levelBase.top
             bottom: levelBase.bottom
             right: levelBase.right
@@ -103,37 +94,13 @@ Rectangle {
     NumberAnimation {
         id: moveAnim
         target: levelMove;
-        duration: 800;
+        duration: 400;
         easing {type: Easing.OutCubic}
     }
 
-    EdgeSensor{
-        id: edgeSensor
-
-        width: sceneWidth - 1
-        height: sceneHeight - 1
 
 
-        onBottomEdge: {
-            console.debug("bottom");
-            moveY(sceneHeight)
-        }
-        onTopEdge: {
-            console.debug("top")
-            moveY(-sceneHeight)
-        }
-        onRightEdge: {
-            console.debug("right")
-            moveX(sceneWidth)
-        }
-        onLeftEdge: {
-            console.debug("left")
-            moveX(-sceneWidth)
-        }
-
-    }
-
-    Text{
+    Text {
         id: msgText
 
         color: "green"
@@ -141,7 +108,7 @@ Rectangle {
         font.family: "Arial"
     }
 
-    ParallelAnimation{
+    ParallelAnimation {
         id: msgShow
 
         NumberAnimation {
@@ -167,7 +134,7 @@ Rectangle {
         }
     }
 
-    ParallelAnimation{
+    ParallelAnimation {
         id: msgFade
         NumberAnimation {
             target: msgText
@@ -178,11 +145,11 @@ Rectangle {
         }
     }
 
-    function showScore(score){
+    function showScore(score) {
         showMessage("+" + score, StyleColor.foodColor);
     }
 
-    function showDamage(power){
+    function showDamage(power) {
         showMessage("-" + power, StyleColor.enemyColor);
     }
 
@@ -199,14 +166,14 @@ Rectangle {
         msgText.y = ball.y
     }
 
-    function moveY(shift){
+    function moveY(shift) {
         moveAnim.property = "y";        
         moveAnim.to = levelMove.y - shift;
         moveAnim.running = true;
         edgeSensor.y = edgeSensor.y + shift;
     }
 
-    function moveX(shift){
+    function moveX(shift) {
         moveAnim.property = "x";        
         moveAnim.to = levelMove.x - shift;
         moveAnim.running = true;

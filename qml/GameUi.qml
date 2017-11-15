@@ -10,14 +10,14 @@ Item {
     signal breakPressed
     signal breakReleased
 
-    StatePanel{
+    StatePanel {
         id: statePanel
         anchors.top: ui.top
         anchors.right: ui.right
         ball: ball
     }
 
-    ActionPanel{
+    ActionPanel {
         anchors.right: ui.right
         anchors.rightMargin: 20
         anchors.verticalCenter: ui.verticalCenter

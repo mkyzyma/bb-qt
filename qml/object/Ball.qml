@@ -29,7 +29,7 @@ Rectangle {
     width: radius * 2
     height: width
 
-    Body{
+    Body {
         id: ballBody
         target: ball
 
@@ -43,8 +43,10 @@ Rectangle {
             friction: 0
             restitution: 0.25
 
+            property bool isBall: true
+
             onBeginContact: {
-                if(other.isFood){
+                if(other.isFood) {
                     var food = other;
                     food.eat();
                     ball.eat(food.score);
@@ -54,25 +56,13 @@ Rectangle {
                     doDamage(other.damage);
                 }
             }
-        }
-
-        Circle {
-            id: centerPoint
-            radius: 1
-
-            density: 0
-            friction: 0
-            restitution: 0
-
-            property bool isBall: true
-        }
+        }        
 
         onPositionChanged: {
             move()
         }
 
     }
-
 
     ColorAnimation on color {
         id: damageAnim
@@ -81,19 +71,18 @@ Rectangle {
         duration: 200
     }
 
-
-    function push(x, y, f){
-        if (!rip){
+    function push(x, y, f) {
+        if (!rip) {
             var p = Qt.point(x*f, y*f);
             ballBody.applyLinearImpulse(p, ballBody.getWorldCenter());
         }
     }
 
-    function tilt(xRot, yRot){
+    function tilt(xRot, yRot) {
         push(xRot, -yRot, tiltForce);
     }
 
-    function kick(x, y){
+    function kick(x, y) {
         var ballCenter = ballBody.getWorldCenter();
 
         var ix = x - ballCenter.x;
@@ -102,12 +91,12 @@ Rectangle {
         push(ix, iy, kickForce);
     }
 
-    function breakStart(){
+    function breakStart() {
         ballBody.fixedRotation = true;
         fJoint.maxForce = breakForce;
     }
 
-    function breakEnd(){
+    function breakEnd() {
         ballBody.fixedRotation = false;
         fJoint.maxForce = 0;
     }
@@ -117,15 +106,12 @@ Rectangle {
         if (health > 0)
         {
             damage(power);
-
             ball.health -= power;
 
-            if(ball.health <= 0)
-            {
+            if(ball.health <= 0) {
                 doDie();
             }
-            else
-            {
+            else {
                 damageAnim.start();
             }
         }
@@ -134,7 +120,6 @@ Rectangle {
     function doDie () {
         die();
         ball.rip = true;
-
         ball.color = StyleColor.enemyColor;
     }
 }

@@ -38,4 +38,30 @@ Rectangle {
             height: scene.height
         }
     }
+
+    EdgeSensor {
+        id: edgeSensor
+
+        width: scene.width
+        height: scene.height
+
+
+        onBottomEdge: {
+            console.debug("bottom");
+            level.moveY(scene.height)
+        }
+        onTopEdge: {
+            console.debug("top")
+            level.moveY(-scene.height)
+        }
+        onRightEdge: {
+            console.debug("right")
+            level.moveX(scene.width)
+        }
+        onLeftEdge: {
+            console.debug("left")
+            level.moveX(-scene.width)
+        }
+
+    }
 }

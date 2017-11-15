@@ -15,7 +15,7 @@ Rectangle {
     signal pressed
     signal released
 
-    MouseArea{
+    MouseArea {
         id: mouseArea
         anchors.fill: parent
         onPressed: btn.pressed()

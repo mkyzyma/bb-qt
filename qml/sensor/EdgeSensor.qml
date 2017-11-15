@@ -8,25 +8,80 @@ Item {
     signal rightEdge
     signal leftEdge
 
-    Body{
+    HSensor {
         id: bottomSensor
 
-        fixtures: Box{
-            x: edge.x
-            y: edge.y + edge.height
-            width: edge.width
-            height: 1
-            sensor: true
-            onEndContact: {
-                if(other.isBall) bottomEdge();
-            }            
+        x: edge.x
+        y: edge.y + edge.height - 1
+        width: edge.width
+
+        onContact: {
+            if(other.isBall) bottomEdge();
         }
     }
 
-    Body{
+    HSensor {
         id: topSensor
 
-        fixtures: Box{
+        x: edge.x
+        y: edge.y
+        width: edge.width
+
+        onContact: {
+            if(other.isBall) topEdge();
+        }
+    }
+
+    VSensor {
+        id: leftSensor
+
+        x: edge.x
+        y: edge.y
+        height: edge.height
+
+        onContact: {
+            if(other.isBall) leftEdge();
+        }
+    }
+
+    VSensor {
+        id: rightSensor
+
+        x: edge.x + edge.width
+        y: edge.y
+        height: edge.height
+
+        onContact: {
+            if(other.isBall) rightEdge();
+        }
+    }
+
+    /*Rectangle {
+        color: "black"
+
+        x: bottomSensor.x
+        y: bottomSensor.y
+
+        width: bottomSensor.width
+
+        height: 10
+    }
+
+    Rectangle {
+        color: "blue"
+
+        x: topSensor.x
+        y: topSensor.y
+
+        width: topSensor.width
+
+        height: 10
+    }*/
+
+    /*Body {
+        id: topSensor
+
+        fixtures: Box {
             x: edge.x
             y: edge.y
             width: edge.width
@@ -36,12 +91,12 @@ Item {
                 if(other.isBall) topEdge();
             }
         }
-    }
+    }*/
 
-    Body{
+    /*Body{
         id: leftSensor
 
-        fixtures: Box{
+        fixtures: Box {
             x: edge.x
             y: edge.y
             height: edge.height
@@ -56,7 +111,7 @@ Item {
     Body{
         id: rightSensor
 
-        fixtures: Box{
+        fixtures: Box {
             x: edge.x + edge.width
             y: edge.y
             height: edge.height
@@ -66,7 +121,7 @@ Item {
                 if(!other.isBall) rightEdge();
             }
         }
-    }
+    }*/
     /*RayCast {
         id: bottomSensor
 

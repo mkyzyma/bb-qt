@@ -6,6 +6,5 @@ Row {
     anchors.centerIn: parent
 
     spacing: 20
-
 }
 

@@ -12,7 +12,7 @@ Item {
         screen: screen
     }
 
-    GameUi{
+    GameUi {
         id: ui
         onBreakPressed: scene.ball.breakStart()
         onBreakReleased: scene.ball.breakEnd()

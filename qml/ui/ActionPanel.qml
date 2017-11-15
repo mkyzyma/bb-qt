@@ -6,7 +6,7 @@ VPanel {
     signal breakPressed
     signal breakReleased
 
-    PlayButton{
+    PlayButton {
         id: breakButton
 
         onPressed: breakPressed()

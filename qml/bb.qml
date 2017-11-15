@@ -13,8 +13,8 @@ Window {
     id: win
     visible: true
 
-    width: 640
-    height: 480
+    width: 800
+    height: 600
     title: qsTr("Balls & Boxes")
 
     color: "DimGray"
@@ -72,11 +72,7 @@ Window {
         TiltSensor {
             id: tilt
             active: true
-            Component.onCompleted: {
-                console.debug("CALIBRATE");
-                tilt.calibrate();
-            }
-
+            Component.onCompleted: tilt.calibrate()
         }
 
         Component.onCompleted: {

@@ -26,10 +26,7 @@ Rectangle{
 
         MouseArea {
             anchors.fill: startButton
-
-            onClicked: {
-                loader.loadGame();
-            }
+            onClicked: loader.loadGame()
         }
     }
 

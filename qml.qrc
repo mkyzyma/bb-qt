@@ -20,5 +20,8 @@
         <file>qml/ui/StatePanel.qml</file>
         <file>qml/module/Game.qml</file>
         <file>qml/module/Start.qml</file>
+        <file>qml/sensor/RaySensor.qml</file>
+        <file>qml/sensor/HSensor.qml</file>
+        <file>qml/sensor/VSensor.qml</file>
     </qresource>
 </RCC>
