@@ -17,6 +17,7 @@ Rectangle{
 
     property real force: 1 //Сила притяжения
     property int damage: 5 //Сила удара
+    property real distance: 9999
 
     property Ball ball: levelBase.ball
 
@@ -71,5 +72,25 @@ Rectangle{
     function setBall(_ball) {
         ball = _ball;
         ball.move.connect(follow);
+        ball.blast.connect(blast);
+    }
+
+    function blast() {
+        var b = ball.body.getWorldCenter();
+        var e = enemy.body.getWorldCenter();
+
+        var ix = e.x - b.x;
+        var iy = e.y - b.y;
+
+        var p = Qt.point(ix, iy);
+        var l = Math.sqrt(p.x*p.x + p.y*p.y)
+
+        if (l <= ball.blastRadius) {
+
+            p.x = (p.x * 100 / (l * l)) * ball.blastForce;
+            p.y = (p.y * 100 / (l * l)) * ball.blastForce;
+
+            enemyBody.applyLinearImpulse(p, e);
+        }
     }
 }

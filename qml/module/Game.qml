@@ -16,6 +16,7 @@ Item {
         id: ui
         onBreakPressed: scene.ball.breakStart()
         onBreakReleased: scene.ball.breakEnd()
+        onBlastPressed: scene.ball.doBlast()
     }
 
     Component.onCompleted: {

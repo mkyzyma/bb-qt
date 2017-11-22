@@ -6,10 +6,20 @@ VPanel {
     signal breakPressed
     signal breakReleased
 
+    signal blastPressed
+    signal blastReleased
+
     PlayButton {
         id: breakButton
 
         onPressed: breakPressed()
         onReleased: breakReleased()
+    }
+
+    PlayButton {
+        id: blastButton
+
+        onPressed: blastPressed()
+        onReleased: blastReleased()
     }
 }

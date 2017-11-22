@@ -1,7 +1,8 @@
 import QtQuick 2.9
 import Box2D 2.0
+import QtGraphicalEffects 1.0
 import "../global"
-
+import "../Scale.js" as Sc
 Rectangle {
     id: ball
     radius: 24
@@ -9,6 +10,10 @@ Rectangle {
     property alias body: ballBody
 
     property int kickForce: 5 // Сила удара
+
+    property real blastForce: 30 // Сила расталкивания
+    property real blastRadius: 100 // Радиус расталкивания
+
     property real tiltForce: 1.3 // Сила качения
     property int score: 0 // Очки
     property int breakForce: 1000 // Сила торможения
@@ -25,6 +30,7 @@ Rectangle {
     signal damage(int power)
     signal die()
     signal move()
+    signal blast()
 
     width: radius * 2
     height: width
@@ -69,6 +75,48 @@ Rectangle {
         from: StyleColor.enemyColor
         to: StyleColor.ballColor
         duration: 200
+    }
+
+    Rectangle {
+        id: blastShape
+        anchors.centerIn: parent
+        width: blastRadius * 2
+        height: width
+        radius: width / 2
+        opacity: 0
+
+        RadialGradient {
+            anchors.fill: parent
+
+            gradient: Gradient {
+                GradientStop { position: 0.0; color: StyleColor.ballColor }
+                GradientStop { position: 0.5; color: StyleColor.floreColor }
+            }
+        }
+
+
+        NumberAnimation {
+            id: blastStartAnim
+            target: blastShape
+            property: "opacity"
+            duration: 100
+            easing.type: Easing.InQuad
+            from: 0
+            to: 0.5
+            onStopped: {
+                blastEndAnim.start();
+            }
+        }
+
+        NumberAnimation {
+            id: blastEndAnim
+            target: blastShape
+            property: "opacity"
+            duration: 100
+            easing.type: Easing.InQuad
+            from: 0.5
+            to: 0
+        }
     }
 
     function push(x, y, f) {
@@ -121,5 +169,10 @@ Rectangle {
         die();
         ball.rip = true;
         ball.color = StyleColor.enemyColor;
+    }
+
+    function doBlast () {
+        blastStartAnim.start();
+        blast();
     }
 }

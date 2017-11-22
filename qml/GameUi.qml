@@ -9,6 +9,7 @@ Item {
 
     signal breakPressed
     signal breakReleased
+    signal blastPressed
 
     StatePanel {
         id: statePanel
@@ -23,6 +24,7 @@ Item {
         anchors.verticalCenter: ui.verticalCenter
         onBreakPressed: ui.breakPressed()
         onBreakReleased: ui.breakReleased()
+        onBlastPressed: ui.blastPressed()
     }
 
     Component.onCompleted: {
