@@ -23,5 +23,7 @@
         <file>qml/sensor/RaySensor.qml</file>
         <file>qml/sensor/HSensor.qml</file>
         <file>qml/sensor/VSensor.qml</file>
+        <file>qml/ui/Progress.qml</file>
+        <file>qml/ui/icon/Energy.qml</file>
     </qresource>
 </RCC>

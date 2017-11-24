@@ -1,26 +1,80 @@
 import QtQuick 2.9
+
 import "../object"
 import "../global"
 Item{
     id: panel
-    width: 160
+    width: 300
     height: 40
     anchors.margins: 10
 
     property Ball ball
 
-//    Rectangle {
-//        id: rect
-//        anchors.fill: parent
-//        color: "black"
-//        opacity: 0.2
+    //    Rectangle {
+    //        id: rect
+    //        anchors.fill: parent
+    //        color: "black"
+    //        opacity: 0.2
 
-//        radius: 5
-//    }
+    //        radius: 5
+    //    }
+
+    Rectangle {
+        id: healthCaption
+
+        radius: 10
+        width: radius * 2
+        height: width
+        anchors.verticalCenter: panel.verticalCenter
+        anchors.left: panel.left
+        anchors.leftMargin: 10
+
+        color: StyleColor.ballColor
+    }
+
+
+    Progress {
+        id: healthValue
+        anchors.verticalCenter: panel.verticalCenter
+        anchors.left: healthCaption.right
+        anchors.leftMargin: 5
+        width: 50
+        to: 100
+        value: 100
+        color: "green"
+    }
+
+    Rectangle {
+        id: energyCaption
+
+        radius: 10
+        width: radius * 2
+        height: width
+
+
+        anchors.verticalCenter: panel.verticalCenter
+        anchors.left: healthValue.right
+        anchors.leftMargin: 10
+
+        color: "blue"
+    }
+
+
+    Progress {
+        id: energyValue
+        anchors.verticalCenter: panel.verticalCenter
+        anchors.left: energyCaption.right
+        anchors.leftMargin: 5
+        width: 50
+        to: ball.maxEnergy
+        value: ball.energy
+        color: "blue"
+    }
+
     Text {
         id: scoreCaption
         anchors.verticalCenter: panel.verticalCenter
-        anchors.left: panel.left
+        anchors.left: energyValue.right
         anchors.leftMargin: 10
         text: "$"
         font.pixelSize: 26
@@ -41,21 +95,10 @@ Item{
 
     }
 
-    Rectangle {
-        id: healthCaption
 
-        radius: 10
-        width: radius * 2
-        height: width
-        anchors.leftMargin: 60
 
-        anchors.verticalCenter: panel.verticalCenter
-        anchors.left: scoreValue.left
 
-        color: StyleColor.ballColor
-    }
-
-    Text {
+    /*Text {
         id: healthValue
         anchors.verticalCenter: panel.verticalCenter
         anchors.left: healthCaption.right
@@ -64,15 +107,18 @@ Item{
         font.pixelSize: 20
         color: "brown"
         font.bold: true
-    }
+    }*/
 
     function setState() {
         scoreValue.text = ball.score.toString();
-        healthValue.text = ball.health.toString();
+        healthValue.value = ball.health;
+        energyValue.value = ball.energy;
     }
 
     onBallChanged: {
         ball.onScoreChanged.connect(setState);
         ball.onHealthChanged.connect(setState);
+        ball.onEnergyChanged.connect(setState);
+        energyValue.to = ball.maxEnergy;
     }
 }

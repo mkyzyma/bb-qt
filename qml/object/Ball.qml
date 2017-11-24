@@ -15,9 +15,17 @@ Rectangle {
     property real blastRadius: 100 // Радиус расталкивания
 
     property real tiltForce: 1.3 // Сила качения
-    property int score: 0 // Очки
+
     property int breakForce: 1000 // Сила торможения
+
+    property int maxEnergy: 50 // Максимальная енергия
+    property int energy: 50 // Енергия
+    property int usedEnergy // Использованная энергия
+    property int chargeTime: 5000 // Время зарядки
+
+
     property int health: 100 // Здоровье
+    property int score: 0 // Очки
     property bool rip: false // Умер
 
     property FrictionJoint fJoint
@@ -70,13 +78,6 @@ Rectangle {
 
     }
 
-    ColorAnimation on color {
-        id: damageAnim
-        from: StyleColor.enemyColor
-        to: StyleColor.ballColor
-        duration: 200
-    }
-
     Rectangle {
         id: blastShape
         anchors.centerIn: parent
@@ -102,7 +103,7 @@ Rectangle {
             duration: 100
             easing.type: Easing.InQuad
             from: 0
-            to: 0.5
+            to: 0.3
             onStopped: {
                 blastEndAnim.start();
             }
@@ -114,9 +115,26 @@ Rectangle {
             property: "opacity"
             duration: 100
             easing.type: Easing.InQuad
-            from: 0.5
+            from: 0.3
             to: 0
         }
+    }
+
+    ColorAnimation on color {
+        id: damageAnim
+        from: StyleColor.enemyColor
+        to: StyleColor.ballColor
+        duration: 200
+    }
+
+    NumberAnimation {
+        id: chargeAnim
+        target: ball
+        property: "energy"
+        duration: 100
+        easing.type: Easing.InQuad
+        from: 0
+        to: maxEnergy
     }
 
     function push(x, y, f) {
@@ -169,10 +187,25 @@ Rectangle {
         die();
         ball.rip = true;
         ball.color = StyleColor.enemyColor;
+        ball.useEnergy(energy);
     }
 
     function doBlast () {
+        useEnergy(energy);
         blastStartAnim.start();
         blast();
+    }
+
+    function useEnergy(val) {
+        chargeAnim.stop();
+
+        usedEnergy = Math.min(val, energy);
+        energy -= usedEnergy;
+
+        chargeAnim.from = energy;
+        chargeAnim.to = maxEnergy;
+        chargeAnim.duration = chargeTime;
+
+        chargeAnim.start();
     }
 }

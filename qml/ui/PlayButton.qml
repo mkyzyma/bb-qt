@@ -3,7 +3,7 @@ import QtQuick 2.9
 
 Rectangle {
     id: btn
-    radius: 50
+    radius: 60
     width: radius * 2
     height: width
 

@@ -76,6 +76,7 @@ Rectangle{
     }
 
     function blast() {
+
         var b = ball.body.getWorldCenter();
         var e = enemy.body.getWorldCenter();
 
@@ -87,10 +88,12 @@ Rectangle{
 
         if (l <= ball.blastRadius) {
 
-            p.x = (p.x * 100 / (l * l)) * ball.blastForce;
-            p.y = (p.y * 100 / (l * l)) * ball.blastForce;
+            p.x = (p.x * 100 / (l * l)) * ball.usedEnergy;
+            p.y = (p.y * 100 / (l * l)) * ball.usedEnergy;
 
             enemyBody.applyLinearImpulse(p, e);
         }
+
+
     }
 }
