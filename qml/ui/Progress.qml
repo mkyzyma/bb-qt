@@ -5,19 +5,19 @@ ProgressBar {
     id: control
     padding: 2
 
-    property color backColor: "#e6e6e6"
+    property color backColor: "lightgray"
     property color color: "#17a81a"
 
     background: Rectangle {
         implicitWidth: 200
-        implicitHeight: 12
+        implicitHeight: 18
         color: backColor
         radius: 3
     }
 
     contentItem: Item {
         implicitWidth: 200
-        implicitHeight: 10
+        implicitHeight: 16
 
         Rectangle {
             width: control.visualPosition * parent.width

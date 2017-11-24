@@ -60,17 +60,10 @@ Rectangle {
             property bool isBall: true
 
             onBeginContact: {
-                if(other.isFood) {
-                    var food = other;
-                    food.eat();
-                    ball.eat(food.score);
-                    ball.score += food.score;
-                }
-                if (other.isEnemy) {
-                    doDamage(other.damage);
-                }
+                if(other.isFood)        doEat(other);
+                else if (other.isEnemy) doDamage(other.damage);
             }
-        }        
+        }
 
         onPositionChanged: {
             move()
@@ -138,23 +131,34 @@ Rectangle {
     }
 
     function push(x, y, f) {
+        var p = Qt.point(x*f, y*f);
+        ballBody.applyLinearImpulse(p, ballBody.getWorldCenter());
+    }
+
+
+    function tilt(xRot, yRot) {
         if (!rip) {
-            var p = Qt.point(x*f, y*f);
-            ballBody.applyLinearImpulse(p, ballBody.getWorldCenter());
+            push(xRot, -yRot, tiltForce);
         }
     }
 
-    function tilt(xRot, yRot) {
-        push(xRot, -yRot, tiltForce);
-    }
-
     function kick(x, y) {
-        var ballCenter = ballBody.getWorldCenter();
+        if (!rip) {
+            useEnergy(energy);
 
-        var ix = x - ballCenter.x;
-        var iy = y - ballCenter.y;
+            var ballCenter = ballBody.getWorldCenter();
 
-        push(ix, iy, kickForce);
+            var ix = x - ballCenter.x;
+            var iy = y - ballCenter.y;
+
+            var p = Qt.point(ix, iy);
+            var l = Math.sqrt(p.x*p.x + p.y*p.y)
+
+            p.x = (p.x * usedEnergy * 5) / l;
+            p.y = (p.y * usedEnergy * 5) / l;
+
+            push(p.x, p.y, kickForce);
+        }
     }
 
     function breakStart() {
@@ -166,10 +170,16 @@ Rectangle {
         ballBody.fixedRotation = false;
         fJoint.maxForce = 0;
     }
+    function doEat (food) {
+        if (!rip) {
+            food.fade();
+            ball.eat(food.score);
+            ball.score += food.score;
+        }
+    }
 
     function doDamage(power) {
-
-        if (health > 0)
+        if (!rip)
         {
             damage(power);
             ball.health -= power;
@@ -191,9 +201,11 @@ Rectangle {
     }
 
     function doBlast () {
-        useEnergy(energy);
-        blastStartAnim.start();
-        blast();
+        if (!rip) {
+            useEnergy(energy);
+            blastStartAnim.start();
+            blast();
+        }
     }
 
     function useEnergy(val) {
@@ -202,10 +214,11 @@ Rectangle {
         usedEnergy = Math.min(val, energy);
         energy -= usedEnergy;
 
-        chargeAnim.from = energy;
-        chargeAnim.to = maxEnergy;
-        chargeAnim.duration = chargeTime;
-
-        chargeAnim.start();
+        if (!rip) {
+            chargeAnim.from = energy;
+            chargeAnim.to = maxEnergy;
+            chargeAnim.duration = chargeTime;
+            chargeAnim.start();
+        }
     }
 }
