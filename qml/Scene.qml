@@ -64,4 +64,12 @@ Rectangle {
         }
 
     }
+
+    function pause() {
+        bbWorld.running = false;
+    }
+
+    function resume() {
+        bbWorld.running = true;
+    }
 }

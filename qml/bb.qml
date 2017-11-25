@@ -13,11 +13,29 @@ Window {
     id: win
     visible: true
 
-    width: 900
-    height: 480
+    width: 800
+    height: 600
     title: qsTr("Balls & Boxes")
 
     color: "DimGray"
+    property string state: "start"
+
+    onClosing: {
+        if (state != "start") {
+            close.accepted = false;
+            switch (state) {
+            case "game":
+                pause.show();
+                loader.item.pause();
+                state = "pause";
+                break;
+            case "pause":
+                pause.hide();
+                loader.item.resume();
+                state = "game";
+            }
+        }
+    }
 
     Rectangle {
         id: screen
@@ -27,32 +45,35 @@ Window {
 
         color: "#ECEFF1"
 
+
+        transform: Scale {
+            id: tr
+        }
         Loader {
             id: loader
 
-            transform: Scale {
-                id: tr
-            }
 
             onLoaded: {
-                startRect.height = win.height;
-                startRect.width = win.width;
-
-                startAnim.start();
-
                 tr.xScale = Sc.scaleFactor;
                 tr.yScale = Sc.scaleFactor;
+
+                startRect.height = win.height / Sc.scaleFactor;
+                startRect.width = win.width / Sc.scaleFactor;
+
+                startAnim.start();
             }
 
             function loadStart() {
                 loader.setSource("module/Start.qml", { winHeight: win.height, winWidth: win.width });
+                win.state = "start";
             }
 
             function loadGame() {
-                tilt.calibrate();
-                loader.setSource("module/Game.qml", { tilt: tilt});
+                tiltSensor.calibrate();
+                loader.setSource("module/Game.qml", { tilt: tiltSensor});
+                win.state = "game";
             }
-        }
+        }        
 
         Rectangle {
             id: startRect
@@ -70,14 +91,19 @@ Window {
         }
 
         TiltSensor {
-            id: tilt
+            id: tiltSensor
             active: true
-            Component.onCompleted: tilt.calibrate()
+            Component.onCompleted: tiltSensor.calibrate()
         }
 
-        Component.onCompleted: {
+        Component.onCompleted: {            
             Sc.config(screen);
             loader.loadStart();
+        }
+
+        Pause {
+            id: pause;
+            onExit: loader.loadStart();
         }
     }
 }

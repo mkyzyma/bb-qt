@@ -17,16 +17,26 @@ Item {
         onBreakPressed: scene.ball.breakStart()
         onBreakReleased: scene.ball.breakEnd()
         onBlastPressed: scene.ball.doBlast()
-    }
+    }    
 
     Component.onCompleted: {
         ui.height = win.height / Sc.scaleFactor;
         ui.width = win.width / Sc.scaleFactor;
         ui.ball = scene.ball;
         tilt.onReadingChanged.connect(onTilt);
-    }
+    }    
 
     function onTilt() {
         scene.ball.tilt(tilt.reading.xRotation, tilt.reading.yRotation)
+    }
+
+    function pause() {
+        console.debug("pause");
+        scene.pause();
+    }
+
+    function resume() {
+        console.debug("resume");
+        scene.resume();
     }
 }

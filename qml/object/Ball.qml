@@ -68,7 +68,6 @@ Rectangle {
         onPositionChanged: {
             move()
         }
-
     }
 
     Rectangle {
@@ -170,6 +169,7 @@ Rectangle {
         ballBody.fixedRotation = false;
         fJoint.maxForce = 0;
     }
+
     function doEat (food) {
         if (!rip) {
             food.fade();

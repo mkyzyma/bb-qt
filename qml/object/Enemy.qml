@@ -40,7 +40,6 @@ Rectangle{
             property alias damage: enemy.damage
 
         }
-
     }
 
     FrictionJoint {
@@ -93,7 +92,5 @@ Rectangle{
 
             enemyBody.applyLinearImpulse(p, e);
         }
-
-
     }
 }

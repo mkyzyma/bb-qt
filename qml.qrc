@@ -25,5 +25,6 @@
         <file>qml/sensor/VSensor.qml</file>
         <file>qml/ui/Progress.qml</file>
         <file>qml/ui/icon/Energy.qml</file>
+        <file>qml/module/Pause.qml</file>
     </qresource>
 </RCC>

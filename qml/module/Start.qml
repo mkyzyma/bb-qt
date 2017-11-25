@@ -8,6 +8,14 @@ Rectangle{
     property int winHeight
     property int winWidth
 
+    Text {
+        text: "Ball & Boxes"
+        font.pixelSize: 32
+        anchors.horizontalCenter: startPanel.horizontalCenter
+        anchors.top: startPanel.top
+        anchors.topMargin: 20
+    }
+
     Rectangle {
         anchors.centerIn: startPanel
         id: startButton
@@ -20,7 +28,7 @@ Rectangle{
             font.bold: true
             color: "DarkOrange"
             anchors.centerIn: startButton
-            text: "Пехали!"
+            text: "Поехали!"
             font.pixelSize: 18
         }
 
