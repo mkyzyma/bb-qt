@@ -2,11 +2,12 @@ import QtQuick 2.9
 import QtSensors 5.9
 
 import "../Scale.js" as Sc
-import ".."
+
 
 Item {
+    id: game
     property TiltSensor tilt
-
+    property int levelNumber
     Scene {
         id: scene
         screen: screen
@@ -21,8 +22,7 @@ Item {
 
     Component.onCompleted: {
         ui.height = win.height / Sc.scaleFactor;
-        ui.width = win.width / Sc.scaleFactor;
-        ui.ball = scene.ball;
+        ui.width = win.width / Sc.scaleFactor;        
         tilt.onReadingChanged.connect(onTilt);
     }    
 
@@ -38,5 +38,10 @@ Item {
     function resume() {
         console.debug("resume");
         scene.resume();
+    }
+
+    function setBall(ball) {
+        console.debug("Game.setBall");
+        ui.setBall(ball);
     }
 }

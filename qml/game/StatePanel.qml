@@ -1,7 +1,8 @@
 import QtQuick 2.9
 
-import "../object"
+import "object"
 import "../global"
+import "../ui"
 Item{
     id: panel
     width: 300
@@ -9,15 +10,6 @@ Item{
     anchors.margins: 10
 
     property Ball ball
-
-    //    Rectangle {
-    //        id: rect
-    //        anchors.fill: parent
-    //        color: "black"
-    //        opacity: 0.2
-
-    //        radius: 5
-    //    }
 
     Rectangle {
         id: healthCaption
@@ -66,8 +58,8 @@ Item{
         anchors.left: energyCaption.right
         anchors.leftMargin: 5
         width: 50
-        to: ball.maxEnergy
-        value: ball.energy
+        /*to: ball.maxEnergy
+        value: ball.energy*/
         color: "blue"
     }
 
@@ -83,6 +75,7 @@ Item{
         font.bold: true
 
     }
+
     Text {
         id: scoreValue
         anchors.verticalCenter: panel.verticalCenter
@@ -95,30 +88,20 @@ Item{
 
     }
 
-
-
-
-    /*Text {
-        id: healthValue
-        anchors.verticalCenter: panel.verticalCenter
-        anchors.left: healthCaption.right
-        anchors.leftMargin: 5
-        text: "100"
-        font.pixelSize: 20
-        color: "brown"
-        font.bold: true
-    }*/
-
     function setState() {
         scoreValue.text = ball.score.toString();
         healthValue.value = ball.health;
         energyValue.value = ball.energy;
     }
 
-    onBallChanged: {
+    function setBall(ball) {
+        panel.ball = ball;
         ball.onScoreChanged.connect(setState);
         ball.onHealthChanged.connect(setState);
         ball.onEnergyChanged.connect(setState);
         energyValue.to = ball.maxEnergy;
+        energyValue.value = ball.energy;
+        console.debug("StatPanel.setBall");
+        setState();
     }
 }

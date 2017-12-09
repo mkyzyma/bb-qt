@@ -1,8 +1,8 @@
 import QtQuick 2.9
 import Box2D 2.0
 import QtGraphicalEffects 1.0
-import "../global"
-import "../Scale.js" as Sc
+import "../../global"
+//import "../../Scale.js" as Sc
 Rectangle {
     id: ball
     radius: 24

@@ -1,6 +1,6 @@
 import QtQuick 2.9
-import "ui"
-import "Scale.js" as Sc
+
+import "../Scale.js" as Sc
 import "object"
 Item {
     id: ui
@@ -15,7 +15,7 @@ Item {
         id: statePanel
         anchors.top: ui.top
         anchors.right: ui.right
-        ball: ball
+
     }
 
     ActionPanel {
@@ -27,7 +27,8 @@ Item {
         onBlastPressed: ui.blastPressed()
     }
 
-    Component.onCompleted: {
-        statePanel.ball = ball
-    }
+   function setBall(ball) {
+       console.debug("GameUi.setBall");
+       statePanel.setBall(ball);
+   }
 }

@@ -1,19 +1,21 @@
 import QtQuick 2.9
 import Box2D 2.0
 import QtSensors 5.9
-import "Scale.js" as Scl
+import "../Scale.js" as Scl
 import "level"
 import "object"
-import "sensor"
-import "global"
+import "../sensor"
+import "../global"
 Rectangle {
     id: scene
 
     width: Scl.defWidth
     height: Scl.defHeight
 
-    property Ball ball: level.ball
+    property Ball ball
     property Rectangle screen   
+    property int levelNumber
+    property LevelBase level
 
     World {
         id: bbWorld
@@ -22,11 +24,24 @@ Rectangle {
         pixelsPerMeter: 10
     }
 
-    Level1{
+    /*Level1{
         id: level
 
         sceneWidth: scene.width
         sceneHeight: scene.height
+    }*/
+
+    Loader {
+        id: levelLoader
+
+        Component.onCompleted: {
+            setSource("level/Level" + game.levelNumber + ".qml",
+                      { sceneWidth: scene.width, sceneHeight: scene.height });
+
+            ball = item.ball;
+            level = item;
+            ui.setBall(ball);
+        }
     }
 
     Body{

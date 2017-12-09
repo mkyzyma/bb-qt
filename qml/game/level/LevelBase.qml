@@ -1,8 +1,8 @@
 import QtQuick 2.9
 import Box2D 2.0
 import "../object"
-import "../sensor"
-import "../global"
+import "../../sensor"
+import "../../global"
 Rectangle {
     id: levelBase
 

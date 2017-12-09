@@ -1,30 +1,33 @@
 <RCC>
     <qresource prefix="/">
         <file>qml/bb.qml</file>
-        <file>qml/Scene.qml</file>
-        <file>qml/level/Level1.qml</file>
-        <file>qml/object/Ball.qml</file>
-        <file>qml/object/Wall.qml</file>
-        <file>qml/level/LevelBase.qml</file>
         <file>qml/ui/VPanel.qml</file>
-        <file>qml/ui/ActionPanel.qml</file>
-        <file>qml/ui/PlayButton.qml</file>
         <file>qml/Scale.js</file>
-        <file>qml/GameUi.qml</file>
         <file>qml/sensor/EdgeSensor.qml</file>
-        <file>qml/object/Food.qml</file>
         <file>qml/global/StyleColor.qml</file>
         <file>qml/global/qmldir</file>
-        <file>qml/object/Enemy.qml</file>
         <file>qml/ui/HPanel.qml</file>
-        <file>qml/ui/StatePanel.qml</file>
-        <file>qml/module/Game.qml</file>
-        <file>qml/module/Start.qml</file>
         <file>qml/sensor/RaySensor.qml</file>
         <file>qml/sensor/HSensor.qml</file>
         <file>qml/sensor/VSensor.qml</file>
         <file>qml/ui/Progress.qml</file>
         <file>qml/ui/icon/Energy.qml</file>
-        <file>qml/module/Pause.qml</file>
+        <file>qml/ui/icon/Logo.qml</file>
+        <file>qml/game/level/Level1.qml</file>
+        <file>qml/game/level/LevelBase.qml</file>
+        <file>qml/game/ActionPanel.qml</file>
+        <file>qml/game/Game.qml</file>
+        <file>qml/game/GameUi.qml</file>
+        <file>qml/game/PlayButton.qml</file>
+        <file>qml/game/Scene.qml</file>
+        <file>qml/game/StatePanel.qml</file>
+        <file>qml/game/object/Ball.qml</file>
+        <file>qml/game/object/Enemy.qml</file>
+        <file>qml/game/object/Food.qml</file>
+        <file>qml/game/object/Wall.qml</file>
+        <file>qml/start/EpisodeButton.qml</file>
+        <file>qml/start/Start.qml</file>
+        <file>qml/BaseModule.qml</file>
+        <file>qml/pause/Pause.qml</file>
     </qresource>
 </RCC>

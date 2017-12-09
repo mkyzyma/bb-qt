@@ -7,23 +7,26 @@ import "Scale.js" as Sc
 
 import "ui"
 import "global"
-import "module"
+import "pause"
 
 Window {
     id: win
     visible: true
 
-    width: 800
-    height: 600
+    width: 480
+    height: 320
     title: qsTr("Balls & Boxes")
 
     color: "DimGray"
+
+    // Текущее состояние
     property string state: "start"
 
+    // Кноака назад
     onClosing: {
         if (state != "start") {
             close.accepted = false;
-            switch (state) {
+            switch (state) {            
             case "game":
                 pause.show();
                 loader.item.pause();
@@ -45,10 +48,12 @@ Window {
 
         color: "#ECEFF1"
 
-
+        //Масштабирование
         transform: Scale {
             id: tr
         }
+
+        //Загрузчик модулей
         Loader {
             id: loader
 
@@ -64,20 +69,21 @@ Window {
             }
 
             function loadStart() {
-                loader.setSource("module/Start.qml", { winHeight: win.height, winWidth: win.width });
+                loader.setSource("start/Start.qml", { winHeight: win.height, winWidth: win.width });
                 win.state = "start";
             }
 
-            function loadGame() {
+            function loadGame(levelNum) {
                 tiltSensor.calibrate();
-                loader.setSource("module/Game.qml", { tilt: tiltSensor});
+                loader.setSource("game/Game.qml", { tilt: tiltSensor, levelNumber: levelNum});
                 win.state = "game";
             }
         }        
 
+        //Плавное переключение модулей
         Rectangle {
             id: startRect
-            color: "DimGray"
+            color: "Black"
 
             NumberAnimation {
                 id: startAnim

@@ -1,5 +1,6 @@
 import QtQuick 2.9
 import "../Scale.js" as Scl
+import "../ui"
 VPanel {
     id: panel
 
