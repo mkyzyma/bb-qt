@@ -29,5 +29,6 @@
         <file>qml/start/Start.qml</file>
         <file>qml/BaseModule.qml</file>
         <file>qml/pause/Pause.qml</file>
+        <file>qml/ui/BackScene.qml</file>
     </qresource>
 </RCC>

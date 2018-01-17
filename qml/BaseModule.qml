@@ -1,6 +1,6 @@
 import QtQuick 2.9
 import "Scale.js" as Sc
-Rectangle {
+Item {
     id: baseModule
     property int winHeight
     property int winWidth

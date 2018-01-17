@@ -40,17 +40,19 @@ Window {
         }
     }
 
-    Rectangle {
+    Item {
         id: screen
 
         width:  win.width
         height: win.height
 
-        color: "#ECEFF1"
-
         //Масштабирование
         transform: Scale {
             id: tr
+        }
+
+        BackScene{
+            id: backScene
         }
 
         //Загрузчик модулей
@@ -69,16 +71,19 @@ Window {
             }
 
             function loadStart() {
+                //backScene.resume();
                 loader.setSource("start/Start.qml", { winHeight: win.height, winWidth: win.width });
                 win.state = "start";
+
             }
 
             function loadGame(levelNum) {
+                //backScene.pause();
                 tiltSensor.calibrate();
                 loader.setSource("game/Game.qml", { tilt: tiltSensor, levelNumber: levelNum});
                 win.state = "game";
             }
-        }        
+        }
 
         //Плавное переключение модулей
         Rectangle {
@@ -109,7 +114,7 @@ Window {
 
         Pause {
             id: pause;
-            onExit: loader.loadStart();
+            onExit: loader.loadStart();            
         }
     }
 }

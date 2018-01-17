@@ -3,6 +3,7 @@ import QtQuick 2.0
 Rectangle {
     id: button
     color: "lightBlue"
+    opacity: 0.7
 
     anchors.margins: 20
 

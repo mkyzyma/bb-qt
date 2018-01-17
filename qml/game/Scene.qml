@@ -22,14 +22,7 @@ Rectangle {
         gravity.y: 0
         gravity.x: 0
         pixelsPerMeter: 10
-    }
-
-    /*Level1{
-        id: level
-
-        sceneWidth: scene.width
-        sceneHeight: scene.height
-    }*/
+    }    
 
     Loader {
         id: levelLoader
