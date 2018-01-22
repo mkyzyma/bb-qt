@@ -1,5 +1,3 @@
-import QtQuick 2.0
-
 import QtQuick 2.9
 import Box2D 2.0
 

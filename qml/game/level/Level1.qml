@@ -47,8 +47,6 @@ LevelBase {
         y: 200
     }
 
-
-
     Food {
         x: 200
         y: 250
@@ -116,6 +114,8 @@ LevelBase {
         y: 500
         force: 2
     }
+
+
 
     Component.onCompleted: {
         ball.x = 100

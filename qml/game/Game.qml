@@ -32,12 +32,12 @@ Item {
 
     function pause() {
         console.debug("pause");
-        scene.pause();
+        scene.worldPause();
     }
 
     function resume() {
         console.debug("resume");
-        scene.resume();
+        scene.worldResume();
     }
 
     function setBall(ball) {

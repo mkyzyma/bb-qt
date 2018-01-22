@@ -1,11 +1,11 @@
-import QtQuick 2.0
+import QtQuick 2.9
 import "../Scale.js" as Sc
 
-Rectangle {
+import ".."
+
+BaseModule {
     id: pause
 
-    color: "black"
-    opacity: 0.5
     height: 0
 
     y: -5000
@@ -14,11 +14,14 @@ Rectangle {
     signal resume()
 
     Rectangle {
-        opacity: 1
+        id: rect
+        anchors.fill: parent;
+        color: "black"
+        opacity: 0.5
+    }
 
-        id: exitButton
-        //color: "WhiteSmoke"
-        //radius: 20
+    Rectangle {
+        id: exitButton        
         width: 150
         height: 50
 
@@ -39,7 +42,6 @@ Rectangle {
         }
     }
 
-
     NumberAnimation {
         id: showAnim
         target: pause
@@ -47,7 +49,7 @@ Rectangle {
         duration: 300
         easing.type: Easing.InOutQuad
         from: 0
-        to: 0.5
+        to: 1
     }
     NumberAnimation {
         id: hideAnim
@@ -78,3 +80,4 @@ Rectangle {
 
     }
 }
+

@@ -10,7 +10,7 @@ RESOURCES += qml.qrc
 include(E:/tools/qml-box2d/box2d_lib.pri)
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
-QML_IMPORT_PATH = e:/tools/Qt/5.9.1/android_armv7/qml/Box2D.2.0
+QML_IMPORT_PATH = e:/tools/Qt/5.10.0/android_armv7/qml/Box2D.2.0
 
 # Additional import path used to resolve QML modules just for Qt Quick Designer
 QML_DESIGNER_IMPORT_PATH =

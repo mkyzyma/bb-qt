@@ -30,5 +30,8 @@
         <file>qml/BaseModule.qml</file>
         <file>qml/pause/Pause.qml</file>
         <file>qml/ui/BackScene.qml</file>
+        <file>qml/game/level/Level0.qml</file>
+        <file>qml/ui/Header.qml</file>
+        <file>qml/start/LevelSelect.qml</file>
     </qresource>
 </RCC>

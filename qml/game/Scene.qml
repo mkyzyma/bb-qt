@@ -22,7 +22,7 @@ Rectangle {
         gravity.y: 0
         gravity.x: 0
         pixelsPerMeter: 10
-    }    
+    }
 
     Loader {
         id: levelLoader
@@ -73,11 +73,14 @@ Rectangle {
 
     }
 
-    function pause() {
+    function worldPause() {
+        console.debug("Scene pause");
         bbWorld.running = false;
+
     }
 
-    function resume() {
+    function worldResume() {
+        console.debug("Scene resume");
         bbWorld.running = true;
     }
 }

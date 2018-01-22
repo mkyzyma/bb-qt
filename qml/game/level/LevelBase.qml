@@ -1,5 +1,6 @@
 import QtQuick 2.9
 import Box2D 2.0
+
 import "../object"
 import "../../sensor"
 import "../../global"
@@ -143,7 +144,7 @@ Rectangle {
             property: "opacity"
             to: 0
         }
-    }
+    }    
 
     function showScore(score) {
         showMessage("+" + score, StyleColor.foodColor);
@@ -178,6 +179,22 @@ Rectangle {
         moveAnim.to = levelMove.x - shift;
         moveAnim.running = true;
         edgeSensor.x = edgeSensor.x + shift;
+    }
+
+    function basePause() {
+        baseSetActive(false);
+    }
+
+    function baseResume() {
+        baseSetActive(true);
+    }
+
+    function baseSetActive(isActive) {
+        top.body.active = isActive;
+        left.body.active = isActive;
+        right.body.active = isActive;
+        bottom.body.active = isActive;
+        ball.body.active = isActive;
     }
 }
 

@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.9
 import Box2D 2.0
 
 import "../Scale.js" as Scl
@@ -8,8 +8,9 @@ import "../game/level"
 Rectangle {
     id: backScene
 
-    width: Scl.defWidth
-    height: Scl.defHeight
+//    width: Scl.defWidth
+//    height: Scl.defHeight
+
 
     property Rectangle screen
 
@@ -33,9 +34,10 @@ Rectangle {
         gravity.y: 0
         gravity.x: 0
         pixelsPerMeter: 10
+
     }
 
-    Level1 {
+    Level0 {
         id: level
         sceneWidth: backScene.width
         sceneHeight: backScene.height
@@ -45,22 +47,13 @@ Rectangle {
         anchors.fill: level
 
         color: "black"
-        opacity: 0.7
+        opacity: 0.5
     }
 
-    Timer {
-        interval: 5000; running: true; repeat: true
-        onTriggered: {
-            var s = 1000;
-            var ix = Math.random(s);
-            var iy = Math.random(s);
 
-            level.ball.kick(ix,iy);
-        }
-    }
 
     /*EdgeSensor {
-        id: edgeSensor
+        id: backEdgeSensor
 
         width: backScene.width
         height: backScene.height
@@ -86,15 +79,22 @@ Rectangle {
     }*/
 
 
-    Component.onCompleted: {
-        level.ball.kick(10,10);
-    }
+
 
     function pause() {
-        backWorld.running = false;
+        level.pause();
     }
 
     function resume() {
+        level.resume();
+
+    }
+
+    function worldPause() {
+        backWorld.running = false;
+    }
+
+    function worldResume() {
         backWorld.running = true;
     }
 }

@@ -1,49 +1,20 @@
 import QtQuick 2.9
+
 import "../Scale.js" as Sc
 import "../global"
-import "../ui/icon"
-
 import ".."
 
 BaseModule{
     id: startPanel
 
-
-    /*Rectangle {
-        id: rightPanel
-        height: startPanel.height
-        width: logo.width + 45
-
-        color: "Gray"
-    }
-
-    Logo{
-        id: logo
-        anchors.top: startPanel.top
-        anchors.left: startPanel.left
-        anchors.margins: 20
-    }
-
-    Rectangle {
-        anchors.left: rightPanel.left
-        anchors.right: rightPanel.right
-        anchors.bottom: rightPanel.bottom
-        color: Qt.darker(rightPanel.color, 1.3)
-        height: 100
-    }*/
-
     Flow {
-        padding: 20
-        spacing: 20
-        anchors.left: startPanel.left
-        anchors.right: startPanel.right
-        anchors.top: startPanel.top
-        anchors.bottom: startPanel.bottom
-
+        spacing: 20       
+        anchors.centerIn: parent;
+        width: 460
         EpisodeButton {
             text: "Episode 1"
+            onClicked: loader.loadLevelSelect(1);
         }
-
         EpisodeButton {
             text: "Episode 2"
         }
@@ -59,6 +30,5 @@ BaseModule{
         EpisodeButton {
             text: "Episode 6"
         }
-
     }
 }

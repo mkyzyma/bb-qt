@@ -1,4 +1,4 @@
-import QtQuick 2.0
+import QtQuick 2.9
 
 Rectangle {
     id: button
@@ -16,10 +16,12 @@ Rectangle {
 
     property alias text: buttonText.text
 
+    signal clicked
+
     Text {
         id: buttonText
         font.bold: true
-        color: "DarkOrange"
+        color: "Black"
         anchors.centerIn: parent
         text: "E1"
         font.pixelSize: 18
@@ -27,6 +29,6 @@ Rectangle {
 
     MouseArea {
         anchors.fill: button
-        onClicked: loader.loadGame(1)
+        onClicked: button.clicked();
     }
 }

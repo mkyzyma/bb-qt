@@ -30,13 +30,22 @@ Window {
             case "game":
                 pause.show();
                 loader.item.pause();
+                backScene.worldPause();
                 state = "pause";
                 break;
             case "pause":
                 pause.hide();
                 loader.item.resume();
+                backScene.worldResume();
                 state = "game";
+                break;
+            case "levelSelect":
+                loader.loadStart();
+                backScene.worldResume();
+                state = "start";
+
             }
+
         }
     }
 
@@ -49,6 +58,7 @@ Window {
         //Масштабирование
         transform: Scale {
             id: tr
+
         }
 
         BackScene{
@@ -68,22 +78,34 @@ Window {
                 startRect.width = win.width / Sc.scaleFactor;
 
                 startAnim.start();
+
+
             }
 
             function loadStart() {
-                //backScene.resume();
+                backScene.worldResume();
+                backScene.resume();
                 loader.setSource("start/Start.qml", { winHeight: win.height, winWidth: win.width });
                 win.state = "start";
 
             }
 
             function loadGame(levelNum) {
-                //backScene.pause();
+                backScene.pause();
                 tiltSensor.calibrate();
                 loader.setSource("game/Game.qml", { tilt: tiltSensor, levelNumber: levelNum});
                 win.state = "game";
             }
+
+            function loadLevelSelect(levelNum){
+                backScene.worldResume();
+                backScene.resume();
+                loader.setSource("start/LevelSelect.qml", { winHeight: win.height, winWidth: win.width });
+                win.state = "levelSelect";
+            }
         }
+
+
 
         //Плавное переключение модулей
         Rectangle {
@@ -110,11 +132,14 @@ Window {
         Component.onCompleted: {            
             Sc.config(screen);
             loader.loadStart();
+
+            backScene.width = screen.width / Sc.scaleFactor;
+            backScene.height = screen.height / Sc.scaleFactor;
         }
 
         Pause {
             id: pause;
-            onExit: loader.loadStart();            
+            onExit: loader.loadLevelSelect(1);
         }
     }
 }
