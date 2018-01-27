@@ -6,7 +6,7 @@ import "level"
 import "object"
 import "../sensor"
 import "../global"
-Rectangle {
+Item {
     id: scene
 
     width: Scl.defWidth
@@ -72,6 +72,8 @@ Rectangle {
         }
 
     }
+
+
 
     function worldPause() {
         console.debug("Scene pause");

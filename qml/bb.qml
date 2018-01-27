@@ -3,24 +3,30 @@ import QtQuick.Window 2.3
 import Box2D 2.0
 import QtSensors 5.9
 
+
 import "Scale.js" as Sc
 
 import "ui"
 import "global"
 import "pause"
+import "sound"
 
 Window {
     id: win
     visible: true
 
-    width: 480
-    height: 320
+    width: 640
+    height: 480
     title: qsTr("Balls & Boxes")
 
     color: "DimGray"
 
     // Текущее состояние
     property string state: "start"
+
+    SoundManager {
+        id: sound
+    }
 
     // Кноака назад
     onClosing: {
@@ -78,8 +84,6 @@ Window {
                 startRect.width = win.width / Sc.scaleFactor;
 
                 startAnim.start();
-
-
             }
 
             function loadStart() {
@@ -129,7 +133,7 @@ Window {
             Component.onCompleted: tiltSensor.calibrate()
         }
 
-        Component.onCompleted: {            
+        Component.onCompleted: {
             Sc.config(screen);
             loader.loadStart();
 

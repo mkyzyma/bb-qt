@@ -7,12 +7,13 @@ Rectangle {
     color: StyleColor.wallColor
     radius: 3
     property alias body: wallBody
-    //property
+
     Body {
         id: wallBody
         target: wall
 
         Box{
+            property bool isWall: true
             id: wallShape
 
             width: wall.width

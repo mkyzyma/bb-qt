@@ -1,23 +1,22 @@
 import QtQuick 2.9
 import Box2D 2.0
 
+
 import "../object"
 import "../../sensor"
 import "../../global"
-Rectangle {
+Item {
     id: levelBase
-
-    color: StyleColor.floreColor
 
     property int sceneWidth
     property int sceneHeight
 
-    property Wall topWall: top
-    property Wall bottomWall: bottom
-    property Wall leftWall: left
-    property Wall rightWall: right
-
     property Ball ball: ball
+    Rectangle {
+        id: flor
+        color: StyleColor.floreColor
+        anchors.fill: parent;
+    }
 
     Ball {
         id: ball
@@ -46,45 +45,6 @@ Rectangle {
         maxTorque: 0
     }
 
-    Wall {
-        id: bottom
-        height: 10
-        anchors {
-            bottom: levelBase.bottom
-            left: levelBase.left
-            right: levelBase.right
-        }
-    }
-
-    Wall {
-        id: top
-        height: 10
-        anchors {
-            top: levelBase.top
-            left: levelBase.left
-            right: levelBase.right
-        }
-    }
-
-    Wall {
-        id: left
-        width: 10
-        anchors {
-            top: levelBase.top
-            left: levelBase.left
-            bottom: levelBase.bottom
-        }
-    }
-
-    Wall {
-        id: right
-        width: 10
-        anchors {
-            top: levelBase.top
-            bottom: levelBase.bottom
-            right: levelBase.right
-        }
-    }
 
     transform: Translate {
         id: levelMove
@@ -144,7 +104,7 @@ Rectangle {
             property: "opacity"
             to: 0
         }
-    }    
+    }
 
     function showScore(score) {
         showMessage("+" + score, StyleColor.foodColor);
@@ -168,14 +128,14 @@ Rectangle {
     }
 
     function moveY(shift) {
-        moveAnim.property = "y";        
+        moveAnim.property = "y";
         moveAnim.to = levelMove.y - shift;
         moveAnim.running = true;
         edgeSensor.y = edgeSensor.y + shift;
     }
 
     function moveX(shift) {
-        moveAnim.property = "x";        
+        moveAnim.property = "x";
         moveAnim.to = levelMove.x - shift;
         moveAnim.running = true;
         edgeSensor.x = edgeSensor.x + shift;
@@ -190,10 +150,6 @@ Rectangle {
     }
 
     function baseSetActive(isActive) {
-        top.body.active = isActive;
-        left.body.active = isActive;
-        right.body.active = isActive;
-        bottom.body.active = isActive;
         ball.body.active = isActive;
     }
 }

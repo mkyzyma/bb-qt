@@ -1,4 +1,5 @@
 import QtQuick 2.9
+import QtGraphicalEffects 1.0
 import "../object"
 
 LevelBase {
@@ -7,39 +8,58 @@ LevelBase {
     width: sceneWidth
     height: sceneHeight * 2
 
-    Wall {
-        height: 20
-        x: parent.x
-        y: parent.y + sceneHeight - height / 2
-        width: sceneWidth - 100
-    }
+    Item {
+        id: walls
 
-    Wall {
-        width: 10
-        x: parent.x + sceneWidth / 2
-        y: parent.y
-        height: sceneHeight - 100
-    }
+        anchors.fill: parent;
 
-    Wall {
-        height: 10
-        x: parent.x + 100
-        y: parent.y + sceneHeight + sceneHeight / 2
-        width: sceneWidth - 100
-    }
+        Perimeter{
+            id: perimeter;
+        }
 
-    Wall {
-        width: 10
-        x: parent.x + sceneWidth / 3
-        y: parent.y + sceneHeight
-        height: sceneHeight / 3
-    }
+        Wall {
+            height: 20
+            x: parent.x
+            y: parent.y + sceneHeight - height / 2
+            width: sceneWidth - 100
+        }
 
-    Wall {
-        width: 10
-        x: parent.x + sceneWidth / 3 * 2
-        y: parent.y + sceneHeight + sceneHeight / 3 - 30
-        height: sceneHeight / 2
+        Wall {
+            width: 10
+            x: parent.x + sceneWidth / 2
+            y: parent.y
+            height: sceneHeight - 100
+        }
+
+        Wall {
+            height: 10
+            x: parent.x + 100
+            y: parent.y + sceneHeight + sceneHeight / 2
+            width: sceneWidth - 100
+        }
+
+        Wall {
+            width: 10
+            x: parent.x + sceneWidth / 3
+            y: parent.y + sceneHeight
+            height: sceneHeight / 3
+        }
+
+        Wall {
+            width: 10
+            x: parent.x + sceneWidth / 3 * 2
+            y: parent.y + sceneHeight + sceneHeight / 3 - 30
+            height: sceneHeight / 2
+        }
+
+        layer.enabled: true
+        layer.effect: DropShadow {
+            verticalOffset: 2
+            horizontalOffset: 2
+            color: "#80000000"
+            radius: 2
+            samples: 3
+        }
     }
 
     Food {

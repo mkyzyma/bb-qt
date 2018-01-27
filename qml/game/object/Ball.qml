@@ -62,7 +62,11 @@ Rectangle {
             onBeginContact: {
                 if(other.isFood)        doEat(other);
                 else if (other.isEnemy) doDamage(other.damage);
+                else if (other.isWall) {
+                    sound.wall();
+                }
             }
+
         }
 
         onPositionChanged: {
@@ -77,7 +81,7 @@ Rectangle {
         height: width
         radius: width / 2
         opacity: 0
-
+        color: StyleColor.floreColor
         RadialGradient {
             anchors.fill: parent
 
@@ -181,6 +185,7 @@ Rectangle {
     function doDamage(power) {
         if (!rip)
         {
+            sound.enemy();
             damage(power);
             ball.health -= power;
 
@@ -202,6 +207,7 @@ Rectangle {
 
     function doBlast () {
         if (!rip) {
+            sound.blast();
             useEnergy(energy);
             blastStartAnim.start();
             blast();

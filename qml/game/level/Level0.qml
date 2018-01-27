@@ -1,4 +1,5 @@
 import QtQuick 2.9
+import QtGraphicalEffects 1.0
 import "../../Scale.js" as Sc
 import "../object"
 LevelBase {
@@ -7,22 +8,40 @@ LevelBase {
     width: sceneWidth
     height: sceneHeight
 
-    Wall {
-        id: wall1
-        width: 10
-        height: sceneHeight / 2
-        x: parent.x + sceneWidth / 2 - 250;
-        y: (sceneHeight - height) / 2;
-    }
+    Item {
+        id: walls
 
-    Wall {
-        id: wall2
-        width: 10
-        height: sceneHeight / 2
-        x: parent.x + sceneWidth / 2 + 240;
-        y: (sceneHeight - height) / 2;
-    }
+        anchors.fill: parent;
 
+        Perimeter{
+            id: perimeter;
+        }
+
+        Wall {
+            id: wall1
+            width: 10
+            height: sceneHeight / 2
+            x: parent.x + sceneWidth / 2 - 250;
+            y: (sceneHeight - height) / 2;
+        }
+
+        Wall {
+            id: wall2
+            width: 10
+            height: sceneHeight / 2
+            x: parent.x + sceneWidth / 2 + 240;
+            y: (sceneHeight - height) / 2;
+        }
+
+        layer.enabled: true
+        layer.effect: DropShadow {
+            verticalOffset: 2
+            horizontalOffset: 2
+            color: "#80000000"
+            radius: 2
+            samples: 3
+        }
+    }
     Enemy {
         id: enemy1
         x: 200
@@ -82,17 +101,19 @@ LevelBase {
 
     function pause() {
         moveTimer.stop();
+        actionTimer.stop();
         setActive(false);
     }
 
     function resume() {
         moveTimer.start();
+        actionTimer.start();
         setActive(true);
     }
 
     function setActive(isActive) {
         baseSetActive(isActive);
-
+        perimeter.setActive(isActive);
         wall1.body.active = isActive;
         wall2.body.active = isActive;
 

@@ -33,5 +33,13 @@
         <file>qml/game/level/Level0.qml</file>
         <file>qml/ui/Header.qml</file>
         <file>qml/start/LevelSelect.qml</file>
+        <file>qml/game/object/Perimeter.qml</file>
+        <file>sound/kick.wav</file>
+        <file>sound/wall.wav</file>
+        <file>sound/hit-metallic.wav</file>
+        <file>sound/water-ice.wav</file>
+        <file>sound/kick2.wav</file>
+        <file>qml/sound/SoundManager.qml</file>
+        <file>sound/snare-1.wav</file>
     </qresource>
 </RCC>
