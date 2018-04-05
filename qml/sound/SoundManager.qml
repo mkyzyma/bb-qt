@@ -1,6 +1,7 @@
-import QtQuick 2.0
+import QtQuick 2.9
 import QtMultimedia 5.9
 
+// @disable-check M324
 Item {
     SoundEffect {
         id: wallSound
