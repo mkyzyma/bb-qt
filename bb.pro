@@ -1,4 +1,4 @@
-TEMPLATE = app
+https://www.tutu.ru/poezda/order/passengers/?result_id=60e34c70vuetify set element widthTEMPLATE = apphttps://www.tutu.ru/poezda/order/passengers/?result_id=60e34c70
 
 QT += qml quick multimedia
 CONFIG += c++14
@@ -7,11 +7,14 @@ SOURCES += main.cpp
 
 RESOURCES += qml.qrc
 
-include(E:/tools/qml-box2d/box2d_lib.pri)
+include(/home/prog/tools/qml-box2d/box2d_lib.pri)
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
-QML_IMPORT_PATH = e:/tools/Qt/5.10.0/android_armv7/qml/Box2D.2.0
-QML_IMPORT_PATH += e:/tools/Qt/5.10.0/mingw53_32/qml/Box2D.2.0
+#QML_IMPORT_PATH = e:/tools/Qt/5.10.0/android_armv7/qml/Box2D.2.0
+#QML_IMPORT_PATH += e:/tools/Qt/5.10.0/mingw53_32/qml/Box2D.2.0
+
+QML_IMPORT_PATH = /mnt/storage/tools/Qt/5.11.2/android_armv7/qml/Box2D.2.0
+#QML_IMPORT_PATH += ~/tools/Qt/5.11.2/mingw53_32/qml/Box2D.2.0
 
 # Additional import path used to resolve QML modules just for Qt Quick Designer
 QML_DESIGNER_IMPORT_PATH =

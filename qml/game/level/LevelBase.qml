@@ -12,10 +12,17 @@ Item {
     property int sceneHeight
 
     property Ball ball: ball
-    Rectangle {
+
+//    Rectangle {
+//        id: flor
+//        color: StyleColor.floreColor
+//        anchors.fill: parent;
+//    }
+    Image {
         id: flor
-        color: StyleColor.floreColor
-        anchors.fill: parent;
+        anchors.fill: parent
+        source: "../../../img/flor/paper-caged.png"
+        fillMode: Image.Tile
     }
 
     Ball {

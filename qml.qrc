@@ -41,5 +41,6 @@
         <file>sound/kick2.wav</file>
         <file>qml/sound/SoundManager.qml</file>
         <file>sound/snare-1.wav</file>
+        <file>img/flor/paper-caged.png</file>
     </qresource>
 </RCC>
